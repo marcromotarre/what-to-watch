@@ -1,0 +1,13 @@
+{
+  "hbo-max": { "total_movies": 1101, "scraped_movies": 1101 },
+  "apple-tv-plus": { "total_movies": 56, "scraped_movies": 56 },
+  "netflix-basic-with-ads": { "total_movies": 5194, "scraped_movies": 4593 },
+  "netflix": { "total_movies": 5347, "scraped_movies": 4686 },
+  "disney": { "total_movies": 1698, "scraped_movies": 1698 },
+  "amazon-prime-video": { "total_movies": 4186, "scraped_movies": 4074 },
+  "filmin": { "total_movies": 9206, "scraped_movies": 6775 },
+  "movistar-plus": { "total_movies": 1704, "scraped_movies": 1704 },
+  "filmin-plus": { "total_movies": 364, "scraped_movies": 364 },
+  "skyshowtime": { "total_movies": 708, "scraped_movies": 708 },
+  "atres-player": { "total_movies": 224, "scraped_movies": 224 }
+}
