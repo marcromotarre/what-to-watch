@@ -1,6 +1,5 @@
 const puppeteer = require("puppeteer");
 const fs = require("fs");
-const process = require("process");
 const { scrollPageToBottom } = require("puppeteer-autoscroll-down");
 
 const movies = {};

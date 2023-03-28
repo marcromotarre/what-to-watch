@@ -2,9 +2,9 @@ const fs = require("fs");
 const axios = require("axios");
 
 const TMDB_API_KEY = "480ff227df49aaa3c76ea70d0462d207";
-const TMDB_FILE_PATH = "../tmdb/results/movies.json";
-const IMDB_FILE_PATH = "./results/movies.json";
-const IMDB_NOT_FOUND_FILE_PATH = "./results/movies-not-found.json";
+const TMDB_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/tmdb/results/movies.json";
+const IMDB_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/movies.json";
+const IMDB_NOT_FOUND_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/movies-not-found.json";
 
 (async () => {
   let tmdb_movies = await get_tmdb_movies();
