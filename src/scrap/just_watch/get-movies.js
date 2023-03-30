@@ -18,8 +18,8 @@ const PLATFORMS = [
   "atres-player",
 ];
 
-const PLATFORMS_FILE_PATH = "./results/platforms.json";
-const MOVIES_FILE_PATH = "./results/movies-by-platforms.json";
+const PLATFORMS_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/just-watch/results/just-watch-platforms.json";
+const MOVIES_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/just-watch/results/just-watch-movies.json";
 
 (async () => {
   let platforms_counted = {};

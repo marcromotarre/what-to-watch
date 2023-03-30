@@ -6,9 +6,13 @@ const FILMAFFINITY_IDS_FILE_PATH =
   "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/filmaffinity/results/filmaffinity-movies.json";
 const FILMAFINITY_SCORES_FILE_PATH =
   "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/filmaffinity/results/filmaffinity-scores.json";
-const FILMAFFINITY_BASE_URL = "https://www.filmaffinity.com/es/";
+const GOOGLE_BASE_URL = "https://www.google.com/";
 
-const GET_FILMAFFINITY_URL = (id) => `${FILMAFFINITY_BASE_URL}film${id}.html`;
+const GET_GOOGLE_URL = (id) =>
+  `https://www.google.com/search?q=filmaffinity+film${id}`;
+
+//rating =
+//num_votes = document.querySelectorAll("#rso")[0].children[0].children[1].children[0].children[2].children[0].children[2]
 
 (async () => {
   let filmaffinity_scores = await get_filmaffinity_scores();
@@ -18,19 +22,16 @@ const GET_FILMAFFINITY_URL = (id) => `${FILMAFFINITY_BASE_URL}film${id}.html`;
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.setViewport({ width: 1200, height: 2000 });
-  await page.goto(FILMAFFINITY_BASE_URL);
+  await page.goto(GOOGLE_BASE_URL);
   await click_on_accept(page);
 
   for (let i = 0; i < filmaffinity_movies_keys.length; i++) {
     const filmaffinity_movie = filmaffinity_movies[filmaffinity_movies_keys[i]];
-    console.log(
-      i,
-      " / ",
-      filmaffinity_movies_keys.length,
-      GET_FILMAFFINITY_URL(filmaffinity_movie.filmaffinity_id)
-    );
-    await page.goto(GET_FILMAFFINITY_URL(filmaffinity_movie.filmaffinity_id));
 
+    await page.goto(GET_GOOGLE_URL(filmaffinity_movie.filmaffinity_id));
+    await page.screenshot({
+      path: "screenshot.jpg",
+    });
     const filmaffinity_score = {
       title: filmaffinity_movie.filmaffinity_title,
       rating: await get_filmaffinity_rating(page),
@@ -41,6 +42,16 @@ const GET_FILMAFFINITY_URL = (id) => `${FILMAFFINITY_BASE_URL}film${id}.html`;
       ...filmaffinity_scores,
       ...{ [filmaffinity_movie.filmaffinity_id]: filmaffinity_score },
     };
+
+    /*console.log(
+      i,
+      " / ",
+      filmaffinity_movies_keys.length,
+      GET_GOOGLE_URL(filmaffinity_movie.filmaffinity_id),
+      filmaffinity_score.rating,
+      filmaffinity_score.num_votes
+    );*/
+    console.log(await get_filmaffinity_rating(page));
 
     await save_file(filmaffinity_scores);
   }
@@ -78,14 +89,28 @@ async function click_on_accept(page) {
 }
 
 async function get_filmaffinity_rating(page) {
-  try {
-    const movie_rating = await page.evaluate(() => {
-      return document.querySelector("#movie-rat-avg").getAttribute("content");
-    });
-    return parseFloat(movie_rating);
-  } catch {
+  //try {
+ 
+  let bodyHTML = await page.evaluate(() => document.body.innerHTML);
+  console.log(bodyHTML);
+  const movie_rating = await page.evaluate(() => {
+    // const a = parseFloat(
+    return document.querySelector(
+      "[href='https://www.filmaffinity.com/es/film576352.html']"
+    ); /*.parentElement.parentElement.parentElement.children[2].children[0].children[1].textContent.replace(
+            "Valoración: ",
+            ""
+          )
+          .replace("/10", "")
+          .replace(",", ".")*/
+    // );
     return 0;
-  }
+  });
+  console.log(movie_rating);
+  return movie_rating;
+  //} catch {
+  //  return 150;
+  // }
 }
 
 async function get_filmaffinity_num_votes(page) {
