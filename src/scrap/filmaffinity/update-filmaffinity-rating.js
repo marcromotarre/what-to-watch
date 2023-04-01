@@ -12,7 +12,12 @@ const GET_FILMAFFINITY_URL = (id) => `${FILMAFFINITY_BASE_URL}film${id}.html`;
 
 (async () => {
   let filmaffinity_scores = await get_filmaffinity_scores();
-  const filmaffinity_movies = await get_filmaffinity_movies();
+
+  let filmaffinity_not_found_ids =
+    get_filmaffinity_not_found_scores_ids(filmaffinity_scores);
+  const filmaffinity_movies = await get_filmaffinity_movies(
+    filmaffinity_scores
+  );
   const filmaffinity_movies_keys = Object.keys(filmaffinity_movies);
 
   const browser = await puppeteer.launch();
@@ -21,8 +26,10 @@ const GET_FILMAFFINITY_URL = (id) => `${FILMAFFINITY_BASE_URL}film${id}.html`;
   await page.goto(FILMAFFINITY_BASE_URL);
   await click_on_accept(page);
 
-  for (let i = 0; i < filmaffinity_movies_keys.length; i++) {
-    const filmaffinity_movie = filmaffinity_movies[filmaffinity_movies_keys[i]];
+  console.log(filmaffinity_not_found_ids)
+
+  for (let i = 0; i < filmaffinity_not_found_ids.length; i++) {
+    const filmaffinity_movie = filmaffinity_movies[filmaffinity_not_found_ids[i]];
     console.log(
       i,
       " / ",
@@ -49,6 +56,17 @@ const GET_FILMAFFINITY_URL = (id) => `${FILMAFFINITY_BASE_URL}film${id}.html`;
 
 async function get_filmaffinity_scores() {
   return JSON.parse(fs.readFileSync(FILMAFINITY_SCORES_FILE_PATH, "utf8"));
+}
+
+function get_filmaffinity_not_found_scores_ids(filmaffinity_scores) {
+  const filmaffinity_scores_ids = Object.keys(filmaffinity_scores);
+
+  return filmaffinity_scores_ids.filter((filmaffinity_score_id) => {
+    const filmaffinity_score = filmaffinity_scores[filmaffinity_score_id];
+    return (
+      filmaffinity_score.rating === -1 || filmaffinity_score.num_votes !== -1
+    );
+  });
 }
 
 async function get_filmaffinity_movies() {
