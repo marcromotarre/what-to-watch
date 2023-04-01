@@ -37,7 +37,7 @@ const GET_QUERY_MOVIE_CREDITS_FROM_TMDB = (tmdb_id) =>
 
   const tmdb_movies_ids = await get_tmdb_movies_ids();
   for (const [index, tmdb_movie_id] of tmdb_movies_ids.entries()) {
-    if (index < 8100) continue;
+    if (index < 3095) continue;
     const { data: movie_data } = await axios.get(
       GET_QUERY_MOVIE_INFO_FROM_TMDB(tmdb_movie_id)
     );

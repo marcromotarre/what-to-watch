@@ -69,15 +69,6 @@ const GET_FILMAFFINITY_URL = (id) => `${FILMAFFINITY_BASE_URL}film${id}.html`;
       ...{ [filmaffinity_movie.filmaffinity_id]: filmaffinity_score },
     };
 
-    /*console.log(
-      i,
-      " / ",
-      filmaffinity_movies_keys.length,
-      GET_GOOGLE_URL(filmaffinity_movie.filmaffinity_id),
-      filmaffinity_score.rating,
-      filmaffinity_score.num_votes
-    );*/
-
     await save_file(filmaffinity_scores);
   }
   await browser.close();
@@ -234,11 +225,8 @@ async function get_filmaffinity_rating(page) {
     const movie_rating = await page.evaluate(() => {
       return document.querySelector("#movie-rat-avg").getAttribute("content");
     });
-
-    console.log("HAHAHA", movie_rating);
     return parseFloat(movie_rating);
   } catch {
-    console.log("HEREEEEEEE");
     return 0;
   }
 }
