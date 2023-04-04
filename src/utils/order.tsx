@@ -8,7 +8,7 @@ export const order_by_year = (movies: Array<Movie>): Array<Movie> => {
 
 export const order_by_popularity = (movies: Array<Movie>): Array<Movie> => {
   return movies.sort((movie_a, movie_b) =>
-    has_decimals(movie_a.popularity) >= has_decimals(movie_b.popularity)
+    movie_a.tmdb.popularity >= movie_b.tmdb.popularity
       ? -1
       : 1
   );

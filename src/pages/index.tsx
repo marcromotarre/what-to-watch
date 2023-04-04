@@ -7,8 +7,7 @@ import WidgetCarousel from "@/components/widgets/widget-carousel";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  console.log(user_widgets);
-  return user_widgets.map((user_widget, index) => (
-    <WidgetCarousel key={index} />
+  return user_widgets.map(({ data }, index) => (
+    <WidgetCarousel key={index} {...data} />
   ));
 }

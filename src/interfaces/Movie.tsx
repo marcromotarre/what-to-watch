@@ -1,4 +1,5 @@
 import Score from "./Score";
+import TMDB from "./TMDB";
 
 export default interface Movie {
   id: number;
@@ -12,8 +13,7 @@ export default interface Movie {
   imdb: Score;
   filmaffinity: Score;
   platforms: Array<string>;
-  popularity: number;
-  tmdb: Score;
+  tmdb: TMDB;
   release_date: ReleaseDate;
 }
 
