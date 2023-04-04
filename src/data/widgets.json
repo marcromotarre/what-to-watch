@@ -1,0 +1,70 @@
+[
+  {
+    "name": "Peliculas estrenadas este año",
+    "type": "carousel",
+    "filters": [
+      {
+        "type": "score",
+        "platform": "filmaffinity",
+        "minimum_score": 5,
+        "minimum_number_votes": 600
+      },
+      {
+        "type": "year",
+        "init_year": "actual",
+        "end_year": "actual"
+      }
+    ],
+    "order": ["popularity", "num_votes", "score", "year"],
+    "genres": []
+  },
+  {
+    "name": "Peliculas estrenadas el año pasado",
+    "type": "carousel",
+    "filters": [
+      {
+        "type": "score",
+        "platform": "filmaffinity",
+        "minimum_score": 5,
+        "minimum_number_votes": 600
+      },
+      {
+        "type": "year",
+        "init_year": "last_year",
+        "end_year": "last_year"
+      }
+    ],
+    "order": ["popularity", "num_votes", "score", "year"],
+    "genres": []
+  },
+  {
+    "name": "Peliculas de Comedia",
+    "type": "carousel",
+    "filters": [
+      { "type": "genres", "genres": ["35"] },
+      {
+        "type": "score",
+        "platform": "filmaffinity",
+        "minimum_score": 5,
+        "minimum_number_votes": 600
+      },
+      {
+        "type": "year",
+        "init_year": "last_year",
+        "end_year": "last_year"
+      }
+    ],
+    "order": ["popularity", "num_votes", "score", "year"]
+  },
+  {
+    "name": "Peliculas de Leonardo DiCaprio",
+    "type": "carousel",
+    "filters": [
+      {
+        "type": "cast",
+        "cast": ["6193"]
+      }
+    ],
+    "order": ["popularity", "num_votes", "score", "year"]
+  }
+]

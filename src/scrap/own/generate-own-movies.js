@@ -83,10 +83,10 @@ const GET_QUERY_MOVIE_CREDITS_FROM_TMDB = (tmdb_id) =>
         imdb_movies,
         tmdb_movies,
       }),
-      popularity: movie_data.popularity,
       tmdb: {
         rating: movie_data.vote_average,
         num_votes: movie_data.vote_count,
+        popularity: movie_data.popularity,
       },
       release_date: {
         year: parseInt(movie_data.release_date.split("-")[0]),
@@ -108,6 +108,11 @@ function get_just_watch_platforms({
   const imdb_movie_id = tmdb_movies[tmdb_movie_id];
   const just_watch_movie_id = imdb_movies[imdb_movie_id];
   return just_watch_movies[just_watch_movie_id];
+}
+
+function has_decimals(n) {
+  let result = n - Math.floor(n) !== 0;
+  return result ? n * 1000 : n;
 }
 
 function get_imdb_movie_score({ tmdb_movie_id, tmdb_movies, imdb_scores }) {

@@ -6,13 +6,16 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Box, Stack } from "@mui/material";
 import { useIsVisible } from "../../hooks/useIsVisible";
+import BorderPoster from "../../components/posters/border-poster";
+import { getChipsByTag } from "../../data/chips";
+import POSTERS from "../../data/posters";
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
   const [next, setNext] = useState(null);
   const [page, setPage] = useState(0);
   const page_size = 5;
-  const GENRES = []
+  const GENRES = [];
 
   const ref = useRef();
   const isVisible = useIsVisible(ref);
@@ -24,7 +27,6 @@ export default function Home() {
   }, [isVisible]);
 
   useEffect(() => {
-    console.log("BOOM");
     get_movies(
       `http://localhost:3000/api/movies?page=${page}&limit=${page_size}&genres=${GENRES}`
     );
@@ -55,20 +57,28 @@ export default function Home() {
           overflowX: "auto",
         }}
       >
-        {movies.map(({ id, poster_path, title }) => (
-          <Box key={id} sx={{ width: "100%" }}>
-            <Box
-              component="img"
-              src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
-              alt={title}
-              sx={{ width: `${POSTER_WIDTH}px` }}
-            ></Box>
+        {movies.map(({ id, poster_path, title, filmaffinity }) => (
+          <Box key={id}>
+            {getChipsByTag("FILMAFFINITY")[1].component({
+              styles: { width: "auto", height: "auto" },
+              poster: POSTERS[0],
+              image: poster_path,
+              name: title,
+              rating: filmaffinity.rating,
+              votes: filmaffinity.num_votes,
+            })}
           </Box>
         ))}
-          <Box ref={ref}>
-            <p>{isVisible ? "Visible" : "Not visible"}</p>
-          </Box>
+        <Box ref={ref}>
+          <p>{isVisible ? "Visible" : "Not visible"}</p>
+        </Box>
       </Box>
     </Box>
   );
+}
+
+{
+  /*<Box key={id} sx={{ width: "100%" }}>
+            <BorderPoster image={poster_path} name={title}  />
+</Box>*/
 }

@@ -108,6 +108,13 @@ function extract_rating_from_span(textContent) {
   );
 }
 
+
+function extract_num_votes_from_span(textContent) {
+  return parseInt(
+    textContent.replace(" votos", "").replace(".", '')
+  );
+}
+
 async function get_imdb_rating(page, url) {
   try {
     const movie_rating = await page.evaluate(() => {
@@ -146,32 +153,32 @@ async function get_imdb_rating(page, url) {
 
 async function get_imdb_num_votes(page, url) {
   try {
-    const movie_rating = await page.evaluate(() => {
+    const movie_num_votes = await page.evaluate(() => {
       return document.querySelectorAll("div.kvH3mc")[0].children[2].children[0]
         .children[2].textContent;
     });
-    return extract_rating_from_span(movie_rating);
+    return extract_num_votes_from_span(movie_num_votes);
   } catch {
     try {
-      const movie_rating = await page.evaluate(() => {
+      const movie_num_votes = await page.evaluate(() => {
         return document.querySelectorAll("div.kvH3mc")[0].children[3]
           .children[0].children[2].textContent;
       });
-      return extract_rating_from_span(movie_rating);
+      return extract_num_votes_from_span(movie_num_votes);
     } catch {
       try {
-        const movie_rating = await page.evaluate(() => {
+        const movie_num_votes = await page.evaluate(() => {
           return document.querySelectorAll("div.kvH3mc")[1].children[2]
             .children[0].children[2].textContent;
         });
-        return extract_rating_from_span(movie_rating);
+        return extract_num_votes_from_span(movie_num_votes);
       } catch {
         try {
-          const movie_rating = await page.evaluate(() => {
+          const movie_num_votes = await page.evaluate(() => {
             return document.querySelectorAll("div.kvH3mc")[1].children[3]
               .children[0].children[2].textContent;
           });
-          return extract_rating_from_span(movie_rating);
+          return extract_num_votes_from_span(movie_num_votes);
         } catch {
           return -1;
         }
@@ -188,4 +195,9 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function randomIntFromInterval(min, max) {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function has_decimals(n) {
+  let result = n - Math.floor(n) !== 0;
+  return result ? n * 1000 : n;
 }
