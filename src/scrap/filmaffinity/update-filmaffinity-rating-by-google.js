@@ -98,10 +98,10 @@ async function get_filmaffinity_movies(filmaffinity_scores) {
   const all_filmaffinity_movies_keys = Object.keys(all_filmaffinity_movies);
   const found_filmaffinity_keys = all_filmaffinity_movies_keys.filter(
     (all_filmaffinity_movies_key) =>
-      all_filmaffinity_movies[all_filmaffinity_movies_key].found &&
+      all_filmaffinity_movies[all_filmaffinity_movies_key].found /*&&
       !filmaffinity_found_scores_ids.includes(
         all_filmaffinity_movies[all_filmaffinity_movies_key].filmaffinity_id
-      )
+      )*/
   );
 
   return found_filmaffinity_keys.map((found_filmaffinity_key) => ({
@@ -126,7 +126,7 @@ function extract_rating_from_span(textContent) {
 }
 
 function extract_num_votes_from_span(textContent) {
-  return parseInt(textContent.replace(" votos", ""));
+  return parseInt(has_decimals(parseFloat(textContent.replace(" votos", ""))));
 }
 
 function get_score_numbers({ movie_rating, movie_num_votes }) {
@@ -255,4 +255,10 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function randomIntFromInterval(min, max) {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+
+function has_decimals(n) {
+  let result = n - Math.floor(n) !== 0;
+  return result ? n * 1000 : n;
 }
