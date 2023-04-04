@@ -13,8 +13,12 @@ const OWN_GENRES_FILE_PATH =
 
 const TMDB_MOVIES_FILE_PATH =
   "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/tmdb/results/tmdb-movies.json";
+
 const IMDB_MOVIES_FILE_PATH =
   "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/imdb-movies.json";
+const IMDB_SCORES_FILE_PATH =
+  "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/imdb-scores.json";
+
 const FILMAFFINITY_SCORES_FILE_PATH =
   "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/filmaffinity/results/filmaffinity-scores.json";
 
@@ -28,6 +32,7 @@ const GET_QUERY_MOVIE_CREDITS_FROM_TMDB = (tmdb_id) =>
 (async () => {
   const just_watch_movies = await get_just_watch_movies();
   const imdb_movies = await get_imdb_movies();
+  const imdb_scores = await get_imdb_scores();
   const tmdb_movies = await get_tmdb_movies();
   const filmaffinity_scores = await get_filmaffintiy_scores();
   const filmaffinity_movies = await get_filmaffinity_movies();
@@ -37,7 +42,7 @@ const GET_QUERY_MOVIE_CREDITS_FROM_TMDB = (tmdb_id) =>
 
   const tmdb_movies_ids = await get_tmdb_movies_ids();
   for (const [index, tmdb_movie_id] of tmdb_movies_ids.entries()) {
-    if (index < 3095) continue;
+    if (index < 0) continue;
     const { data: movie_data } = await axios.get(
       GET_QUERY_MOVIE_INFO_FROM_TMDB(tmdb_movie_id)
     );
@@ -66,10 +71,7 @@ const GET_QUERY_MOVIE_CREDITS_FROM_TMDB = (tmdb_id) =>
       directors: movie_credits_data.crew
         .filter(({ job }) => job === "Director")
         .map(({ id }) => id),
-      imdb: {
-        score: 0,
-        votes: 0,
-      },
+      imdb: get_imdb_movie_score({ tmdb_movie_id, tmdb_movies, imdb_scores }),
       filmaffinity: get_filmaffinity_movie_score({
         tmdb_movie_id,
         filmaffinity_movies,
@@ -81,6 +83,15 @@ const GET_QUERY_MOVIE_CREDITS_FROM_TMDB = (tmdb_id) =>
         imdb_movies,
         tmdb_movies,
       }),
+      popularity: movie_data.popularity,
+      tmdb: {
+        rating: movie_data.vote_average,
+        num_votes: movie_data.vote_count,
+      },
+      release_date: {
+        year: parseInt(movie_data.release_date.split("-")[0]),
+        date: movie_data.release_date,
+      },
     };
     console.log(index, " / ", tmdb_movies_ids.length, movie_data.title);
     await save_files({ own_movies, own_people, own_genres });
@@ -97,6 +108,21 @@ function get_just_watch_platforms({
   const imdb_movie_id = tmdb_movies[tmdb_movie_id];
   const just_watch_movie_id = imdb_movies[imdb_movie_id];
   return just_watch_movies[just_watch_movie_id];
+}
+
+function get_imdb_movie_score({ tmdb_movie_id, tmdb_movies, imdb_scores }) {
+  const imdb_id = tmdb_movies[tmdb_movie_id];
+  if (imdb_id && imdb_scores[imdb_id]) {
+    return {
+      rating: imdb_scores[imdb_id].rating,
+      num_votes: imdb_scores[imdb_id].num_votes,
+    };
+  }
+
+  return {
+    rating: 0,
+    num_votes: 0,
+  };
 }
 
 function get_filmaffinity_movie_score({
@@ -157,6 +183,10 @@ async function get_filmaffinity_movies() {
 
 async function get_filmaffintiy_scores() {
   return JSON.parse(fs.readFileSync(FILMAFFINITY_SCORES_FILE_PATH, "utf8"));
+}
+
+async function get_imdb_scores() {
+  return JSON.parse(fs.readFileSync(IMDB_SCORES_FILE_PATH, "utf8"));
 }
 
 async function get_tmdb_movies_ids() {

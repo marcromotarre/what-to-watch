@@ -12,7 +12,7 @@ export default function Home() {
   const [next, setNext] = useState(null);
   const [page, setPage] = useState(0);
   const page_size = 5;
-  const GENRES = [18]
+  const GENRES = []
 
   const ref = useRef();
   const isVisible = useIsVisible(ref);
@@ -44,28 +44,6 @@ export default function Home() {
   const POSTER_WIDTH = 150;
   return (
     <Box sx={{ backgroundColor: "white", height: "100vh" }}>
-      {/*<Box
-        sx={{
-          display: "grid",
-          gridGap: "16px",
-          padding: "16px",
-          gridTemplateColumns: `repeat(auto-fill,minmax(${POSTER_WIDTH}px,1fr))`,
-          gridAutoFlow: "column",
-          gridAutoColumns: ` minmax(${POSTER_WIDTH}px,1fr)`,
-          overflowX: "auto",
-        }}
-      >
-        {movies.map(({ id, poster_path, title }) => (
-          <Box key={id} sx={{ width: "100%" }}>
-            <Box
-              component="img"
-              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-              alt={title}
-              sx={{ width: `${POSTER_WIDTH}px` }}
-            ></Box>
-          </Box>
-        ))}
-        </Box>*/}
       <Box
         sx={{
           display: "grid",
