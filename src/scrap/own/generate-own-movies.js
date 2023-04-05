@@ -40,9 +40,17 @@ const GET_QUERY_MOVIE_CREDITS_FROM_TMDB = (tmdb_id) =>
   const own_people = await get_own_people();
   const own_genres = await get_own_genres();
 
+  //empty platforms
+  /*const own_movies_ids = Object.keys(own_movies);
+  own_movies_ids.forEach((own_movie_id) => {
+    own_movies[own_movie_id].platforms = [];
+  });
+  await save_files({ own_movies, own_people, own_genres });
+*/
   const tmdb_movies_ids = await get_tmdb_movies_ids();
   for (const [index, tmdb_movie_id] of tmdb_movies_ids.entries()) {
-    if (index < 0) continue;
+    console.log(index, " / ", tmdb_movies_ids.length);
+    if (index < 7332) continue;
     const { data: movie_data } = await axios.get(
       GET_QUERY_MOVIE_INFO_FROM_TMDB(tmdb_movie_id)
     );
@@ -59,6 +67,7 @@ const GET_QUERY_MOVIE_CREDITS_FROM_TMDB = (tmdb_id) =>
       .filter(({ job }) => job === "Director")
       .map(({ id, original_name }) => ({ id, original_name }))
       .forEach(({ id, original_name }) => (own_people[id] = original_name));
+    const today = new Date();
 
     own_movies[movie_data.id] = {
       id: movie_data.id,
@@ -92,8 +101,9 @@ const GET_QUERY_MOVIE_CREDITS_FROM_TMDB = (tmdb_id) =>
         year: parseInt(movie_data.release_date.split("-")[0]),
         date: movie_data.release_date,
       },
+      updated:
+        today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate(),
     };
-    console.log(index, " / ", tmdb_movies_ids.length, movie_data.title);
     await save_files({ own_movies, own_people, own_genres });
   }
   await save_files({ own_movies, own_people, own_genres });
@@ -121,6 +131,7 @@ function get_imdb_movie_score({ tmdb_movie_id, tmdb_movies, imdb_scores }) {
     return {
       rating: imdb_scores[imdb_id].rating,
       num_votes: imdb_scores[imdb_id].num_votes,
+      popularity: imdb_scores[imdb_id].popularity,
     };
   }
 

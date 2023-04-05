@@ -42,7 +42,7 @@ const GET_GOOGLE_URL = (id) => `https://www.google.com/search?q=imdb+${id}`;
       updated:
         today.getFullYear() +
         "-" +
-        (today.getMonth() + 1) +
+        (today.getMonth()) +
         "-" +
         today.getDate(),
     };

@@ -16,7 +16,6 @@ const JUST_WATCH_MOVIES_NOT_FOUND_FILE_PATH = "/Users/marc.romo@attackiq.com/Doc
 
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.setViewport({ width: 1200, height: 2600 });
 
   for (const [index, just_watch_movie] of just_watch_movies.entries()) {
     await page.goto(`https://www.justwatch.com${just_watch_movie}`);

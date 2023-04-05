@@ -16,20 +16,18 @@ const IMDB_MOVIES_OLD_FILE_PATH =
   const imdb_movies_ids = Object.keys(imdb_movies);
 
   const just_watch = {};
-  let number = 0
+  let number = 0;
   imdb_movies_ids.forEach((imdb_movie_id) => {
-      const just_watch_id = imdb_movies[imdb_movie_id].just_watch_id
-    if (just_watch[just_watch_id]) {
-        
-      just_watch[just_watch_id] += 1;
-      console.log(just_watch_id, just_watch[just_watch_id])
-      number++;
-    } else {
-      just_watch[just_watch_id] = 1;
-    }
+    const just_watch_id = imdb_movies[imdb_movie_id].just_watch_id;
+    if (!just_watch[just_watch_id]) just_watch[just_watch_id] = [];
+    just_watch[just_watch_id].push(imdb_movie_id);
+  });
+  console.log(just_watch);
+  const just_watch_ids = Object.keys(just_watch);
+  just_watch_ids.forEach((just_watch_id) => {
+      
   });
 
-console.log(number)
   //save_file(new_format);
 })();
 

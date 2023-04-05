@@ -7,15 +7,14 @@ const POSTERS = [
     component: ({ name, image, styles }) => (
       <BorderPoster name={name} image={image} styles={styles}></BorderPoster>
     ),
-    selected: true,
   },
   {
     name: "ROUNDED",
     component: ({ name, image, styles }) => (
       <RoundedPoster name={name} image={image} styles={styles}></RoundedPoster>
     ),
-    selected: false,
   },
 ];
+
 
 export default POSTERS;

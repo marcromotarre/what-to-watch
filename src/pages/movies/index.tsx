@@ -7,7 +7,7 @@ import axios from "axios";
 import { Box, Stack } from "@mui/material";
 import { useIsVisible } from "../../hooks/useIsVisible";
 import BorderPoster from "../../components/posters/border-poster";
-import { getChipsByTag } from "../../data/chips";
+import { getChipsByTag } from "../../components/chips/chips";
 import POSTERS from "../../data/posters";
 
 export default function Home() {

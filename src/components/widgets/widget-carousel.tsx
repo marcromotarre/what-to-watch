@@ -7,13 +7,21 @@ import axios from "axios";
 import { Box, Stack, Typography } from "@mui/material";
 import { useIsVisible } from "../../hooks/useIsVisible";
 import BorderPoster from "../../components/posters/border-poster";
-import { getChipsByTag } from "../../data/chips";
+import { getChipsByTag } from "../chips/chips";
 import POSTERS from "../../data/posters";
+import MoviePoster from "../movies/movie-poster";
+import Movie from "@/interfaces/Movie";
 
+const inter = Inter({
+  weight: "600",
+  subsets: ["latin"],
+});
 export default function WidgetCarousel({
   name = "Widget Name",
   filters = [],
   order,
+  movie_poster,
+  rating_platform,
 }) {
   // build query
 
@@ -42,16 +50,20 @@ export default function WidgetCarousel({
   }) => {
     const url = `http://localhost:3000/api/movies`;
     const { data } = await axios.post(url, { page, limit, filters, order });
-    console.log(data);
     setMovies([...movies, ...data.results]);
     setNext(data.next);
   };
 
   const POSTER_WIDTH = 150;
   return (
-    <Box sx={{ backgroundColor: "black" }}>
+    <Box sx={{ backgroundColor: "#3D3D3D" }}>
       <Box>
-        <Typography sx={{color: "white"}}>{name}</Typography>
+        <Typography
+          className={inter.className}
+          sx={{ color: "white", paddingLeft: 2 }}
+        >
+          {name}
+        </Typography>
       </Box>
       <Box
         sx={{
@@ -64,21 +76,16 @@ export default function WidgetCarousel({
           overflowX: "auto",
         }}
       >
-        {movies.map(({ id, poster_path, title, filmaffinity }) => (
-          <Box key={id}>
-            {getChipsByTag("FILMAFFINITY")[1].component({
-              styles: { width: "auto", height: "auto" },
-              poster: POSTERS[0],
-              image: poster_path,
-              name: title,
-              rating: filmaffinity.rating,
-              votes: filmaffinity.num_votes,
-            })}
-          </Box>
+        {movies.map((movie: Movie) => (
+          <MoviePoster
+            key={movie.id}
+            movie={movie}
+            chip={movie_poster.chip_name}
+            poster={movie_poster.poster_type}
+            rating_platform={rating_platform}
+          />
         ))}
-        <Box ref={ref}>
-          <p>{isVisible ? "Visible" : "Not visible"}</p>
-        </Box>
+        <Box ref={ref}></Box>
       </Box>
     </Box>
   );

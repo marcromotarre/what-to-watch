@@ -148,8 +148,7 @@ const IMDB_MOVIES_FILE_PATH =
 
 function get_just_watch_url_movie_title({ tmdb_id, tmdb_movies, imdb_movies }) {
   const imdb_movie_id = tmdb_movies[tmdb_id];
-
-  return imdb_movies[imdb_movie_id];
+  return imdb_movies[imdb_movie_id].just_watch_id;
 }
 
 async function get_filmaffinity_movies() {

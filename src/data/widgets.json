@@ -3,6 +3,11 @@
     "type": "carousel",
     "data": {
       "name": "Peliculas estrenadas este año",
+      "movie_poster": {
+        "chip_name": "BASIC_CHIP_IMDB",
+        "poster_type": "RECTANGULAR_WITH_WHITE_BORDER"
+      },
+      "rating_platform": "imdb",
       "filters": [
         {
           "type": "num_votes",
@@ -26,6 +31,11 @@
     "type": "carousel",
     "data": {
       "name": "Peliculas estrenadas el año pasado",
+      "movie_poster": {
+        "chip_name": "SMALL_CHIP_FILMAFFINITY",
+        "poster_type": "ROUNDED"
+      },
+      "rating_platform": "filmaffinity",
       "filters": [
         {
           "type": "rating",
@@ -56,6 +66,11 @@
     "type": "carousel",
     "data": {
       "name": "Peliculas de Comedia",
+      "rating_platform": "filmaffinity",
+      "movie_poster": {
+        "chip_name": "NO_CHIP",
+        "poster_type": "ROUNDED"
+      },
       "filters": [
         {
           "type": "genres",
@@ -83,6 +98,11 @@
     "type": "carousel",
     "data": {
       "name": "Peliculas de Animación",
+      "movie_poster": {
+        "chip_name": "BASIC_CHIP_FILMAFFINITY",
+        "poster_type": "RECTANGULAR_WITH_WHITE_BORDER"
+      },
+      "rating_platform": "filmaffinity",
       "filters": [
         {
           "type": "genres",
@@ -110,6 +130,11 @@
     "type": "carousel",
     "data": {
       "name": "Peliculas de Terror",
+      "movie_poster": {
+        "chip_name": "BASIC_CHIP_FILMAFFINITY",
+        "poster_type": "RECTANGULAR_WITH_WHITE_BORDER"
+      },
+      "rating_platform": "filmaffinity",
       "filters": [
         {
           "type": "genres",
@@ -131,6 +156,11 @@
     "type": "carousel",
     "data": {
       "name": "Peliculas de Leonardo DiCaprio",
+      "movie_poster": {
+        "chip_name": "BASIC_CHIP_FILMAFFINITY",
+        "poster_type": "RECTANGULAR_WITH_WHITE_BORDER"
+      },
+      "rating_platform": "filmaffinity",
       "filters": [
         {
           "type": "cast",
