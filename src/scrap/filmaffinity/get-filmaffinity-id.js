@@ -16,7 +16,11 @@ const IMDB_MOVIES_FILE_PATH =
   let tmdb_movies_ids = await get_tmdb_movies_ids({ filmaffinity_movies });
   let tmdb_movies = await get_tmdb_movies();
   let imdb_movies = await get_imdb_movies();
-  console.log(Object.keys(filmaffinity_movies).length , " / ", tmdb_movies_ids.length)
+  console.log(
+    Object.keys(filmaffinity_movies).length,
+    " / ",
+    tmdb_movies_ids.length
+  );
 
   for (tmdb_movies_id of tmdb_movies_ids) {
     try {
@@ -144,6 +148,7 @@ const IMDB_MOVIES_FILE_PATH =
 
 function get_just_watch_url_movie_title({ tmdb_id, tmdb_movies, imdb_movies }) {
   const imdb_movie_id = tmdb_movies[tmdb_id];
+
   return imdb_movies[imdb_movie_id];
 }
 
@@ -161,7 +166,6 @@ async function get_tmdb_movies() {
 
 async function get_tmdb_movies_ids({
   filmaffinity_movies,
-  include_not_found = false,
 }) {
   const filmaffinity_movies_ids = Object.keys(filmaffinity_movies);
   const tmdb_movies = await JSON.parse(

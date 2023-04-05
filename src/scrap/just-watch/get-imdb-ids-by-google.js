@@ -24,7 +24,7 @@ const IMDB_FILE_PATH =
     if (imdb_id !== null) {
       imdb_movies[imdb_id] = just_watch_movie;
       save_files(imdb_movies);
-      console.log(index, " / ", just_watch_movies.length);
+      console.log(index, " / ", just_watch_movies.length, only_just_watch_title);
     } else {
       await page.screenshot({
         path: `screenshots/${only_just_watch_title}.jpg`,

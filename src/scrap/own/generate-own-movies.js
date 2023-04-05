@@ -3,7 +3,7 @@ const axios = require("axios");
 
 const TMDB_API_KEY = "480ff227df49aaa3c76ea70d0462d207";
 const JUST_WATCH_MOVIES_FILE_PATH =
-  "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/just_watch/results/just-watch-movies.json";
+  "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/just-watch/results/just-watch-movies.json";
 const OWN_MOVIES_FILE_PATH =
   "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/own/results/own-movies.json";
 const OWN_PEOPLE_FILE_PATH =

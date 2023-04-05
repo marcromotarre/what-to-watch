@@ -2,9 +2,12 @@ const fs = require("fs");
 const axios = require("axios");
 
 const TMDB_API_KEY = "480ff227df49aaa3c76ea70d0462d207";
-const TMDB_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/tmdb/results/tmdb-movies.json";
-const IMDB_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/imdb-movies.json";
-const IMDB_NOT_FOUND_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/imdb-movies-not-found.json";
+const TMDB_FILE_PATH =
+  "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/tmdb/results/tmdb-movies.json";
+const IMDB_FILE_PATH =
+  "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/imdb-movies.json";
+const IMDB_NOT_FOUND_FILE_PATH =
+  "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/imdb-movies-not-found.json";
 
 (async () => {
   let tmdb_movies = await get_tmdb_movies();
@@ -15,18 +18,36 @@ const IMDB_NOT_FOUND_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/
   });
 
   for (const [index, imdb_movie_id] of imdb_movies_ids.entries()) {
-    const { data } = await axios.get(
-      `https://api.themoviedb.org/3/find/${imdb_movie_id}?api_key=${TMDB_API_KEY}&external_source=imdb_id`
-    );
-    if (data.movie_results.length === 1) {
-      const tmdb_id = data.movie_results[0].id;
-      tmdb_movies[tmdb_id] = imdb_movie_id;
-      console.log(index, " / ", imdb_movies_ids.length, " - ", imdb_movie_id, tmdb_id);
-    } else {
-      imdb_not_found.push(imdb_movie_id);
-      console.log(index, " / ", imdb_movies_ids.length, " - ", imdb_movie_id, "NOT_FOUND");
+    try {
+      const { data } = await axios.get(
+        `https://api.themoviedb.org/3/find/${imdb_movie_id}?api_key=${TMDB_API_KEY}&external_source=imdb_id`
+      );
+      if (data.movie_results.length === 1) {
+        const tmdb_id = data.movie_results[0].id;
+        tmdb_movies[tmdb_id] = imdb_movie_id;
+        console.log(
+          index,
+          " / ",
+          imdb_movies_ids.length,
+          " - ",
+          imdb_movie_id,
+          tmdb_id
+        );
+      } else {
+        imdb_not_found.push(imdb_movie_id);
+        console.log(
+          index,
+          " / ",
+          imdb_movies_ids.length,
+          " - ",
+          imdb_movie_id,
+          "NOT_FOUND"
+        );
+      }
+      save_files({ tmdb_movies, imdb_not_found });
+    } catch {
+      console.log("error", imdb_movie_id)
     }
-    save_files({ tmdb_movies, imdb_not_found });
   }
 })();
 

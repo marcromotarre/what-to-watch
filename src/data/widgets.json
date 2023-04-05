@@ -5,17 +5,10 @@
       "name": "Peliculas estrenadas este año",
       "filters": [
         {
-          "type": "rating",
-          "data": {
-            "platform": "filmaffinity",
-            "minimum_rating": 5
-          }
-        },
-        {
           "type": "num_votes",
           "data": {
             "platform": "filmaffinity",
-            "minimum_num_votes": 1000
+            "minimum_num_votes": 1
           }
         },
         {

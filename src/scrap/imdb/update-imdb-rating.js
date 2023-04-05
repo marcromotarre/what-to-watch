@@ -3,7 +3,7 @@ const puppeteer = require("puppeteer");
 const axios = require("axios");
 
 const IMDB_IDS_FILE_PATH =
-  "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/imdb-movies.json";
+  "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/old/imdb-movies.json";
 const IMDB_SCORES_FILE_PATH =
   "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/imdb-scores.json";
 const GOOGLE_BASE_URL = "https://www.imdb.com/";
@@ -24,8 +24,6 @@ const GET_IMDB_URL = (id) => `https://www.imdb.com/title/${id}`;
   await page.setViewport({ width: 1200, height: 2000 });
 
   for (let i = 0; i < imdb_movies.length; i++) {
-    await delay(randomIntFromInterval(1000, 3000));
-
     const imdb_movie_id = imdb_movies[i];
 
     await page.goto(GET_IMDB_URL(imdb_movie_id));
