@@ -5,18 +5,28 @@
       "name": "Peliculas estrenadas este año",
       "filters": [
         {
-          "type": "score",
-          "platform": "filmaffinity",
-          "minimum_score": 5,
-          "minimum_number_votes": 600
+          "type": "rating",
+          "data": {
+            "platform": "filmaffinity",
+            "minimum_rating": 5
+          }
+        },
+        {
+          "type": "num_votes",
+          "data": {
+            "platform": "filmaffinity",
+            "minimum_num_votes": 1000
+          }
         },
         {
           "type": "year",
-          "init_year": "actual",
-          "end_year": "actual"
+          "data": {
+            "year_init": 0,
+            "year_end": 0
+          }
         }
       ],
-      "order": ["popularity", "num_votes", "score", "year"]
+      "order": ["popularity", "num_votes", "rating", "year"]
     }
   },
   {
@@ -25,18 +35,28 @@
       "name": "Peliculas estrenadas el año pasado",
       "filters": [
         {
-          "type": "score",
-          "platform": "filmaffinity",
-          "minimum_score": 5,
-          "minimum_number_votes": 600
+          "type": "rating",
+          "data": {
+            "platform": "filmaffinity",
+            "minimum_rating": 5
+          }
+        },
+        {
+          "type": "num_votes",
+          "data": {
+            "platform": "filmaffinity",
+            "minimum_num_votes": 1000
+          }
         },
         {
           "type": "year",
-          "init_year": "last_year",
-          "end_year": "last_year"
+          "data": {
+            "year_init": 1,
+            "year_end": 1
+          }
         }
       ],
-      "order": ["popularity", "num_votes", "score", "year"]
+      "order": ["popularity", "num_votes", "rating", "year"]
     }
   },
   {
@@ -44,22 +64,76 @@
     "data": {
       "name": "Peliculas de Comedia",
       "filters": [
-        { "type": "genres", "genres": ["35"] },
         {
-          "type": "score",
-          "platform": "filmaffinity",
-          "minimum_score": 5,
-          "minimum_number_votes": 600
+          "type": "genres",
+          "data": { "genres": [35], "filter_type": "SOME" }
         },
         {
-          "type": "year",
-          "init_year": "last_year",
-          "end_year": "last_year"
+          "type": "rating",
+          "data": {
+            "platform": "filmaffinity",
+            "minimum_rating": 5
+          }
+        },
+        {
+          "type": "num_votes",
+          "data": {
+            "platform": "filmaffinity",
+            "minimum_num_votes": 1000
+          }
         }
       ],
-      "order": ["popularity", "num_votes", "score", "year"]
+      "order": ["popularity", "num_votes", "rating", "year"]
     }
   },
+  {
+    "type": "carousel",
+    "data": {
+      "name": "Peliculas de Animación",
+      "filters": [
+        {
+          "type": "genres",
+          "data": { "genres": [16], "filter_type": "SOME" }
+        },
+        {
+          "type": "rating",
+          "data": {
+            "platform": "filmaffinity",
+            "minimum_rating": 5
+          }
+        },
+        {
+          "type": "num_votes",
+          "data": {
+            "platform": "filmaffinity",
+            "minimum_num_votes": 1000
+          }
+        }
+      ],
+      "order": ["popularity", "num_votes", "rating", "year"]
+    }
+  },
+  {
+    "type": "carousel",
+    "data": {
+      "name": "Peliculas de Terror",
+      "filters": [
+        {
+          "type": "genres",
+          "data": { "genres": [27], "filter_type": "SOME" }
+        },
+        {
+          "type": "rating",
+          "data": {
+            "platform": "filmaffinity",
+            "minimum_rating": 3.8
+          }
+        }
+      ],
+      "order": ["popularity", "num_votes", "rating", "year"]
+    }
+  },
+
   {
     "type": "carousel",
     "data": {
@@ -67,10 +141,13 @@
       "filters": [
         {
           "type": "cast",
-          "cast": ["6193"]
+          "data": {
+            "cast": [6193],
+            "filter_type": "SOME"
+          }
         }
       ],
-      "order": ["popularity", "num_votes", "score", "year"]
+      "order": ["popularity", "num_votes", "rating", "year"]
     }
   }
 ]

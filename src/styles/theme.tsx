@@ -24,22 +24,27 @@ export const theme = createTheme({
     h6: {
       fontSize: 20,
       fontWeight: 600,
+      fontFamily: "Inter"
     },
     body1: {
       fontSize: 14,
       fontWeight: 600,
+      fontFamily: "Inter"
     },
     body2: {
       fontSize: 12,
       fontWeight: 400,
+      fontFamily: "Inter"
     },
     subtitle2: {
       fontSize: 12,
       fontWeight: 600,
+      fontFamily: "Inter"
     },
     caption: {
       fontSize: 12,
       fontWeight: 400,
+      fontFamily: "Inter"
     },
     query: {
       fontFamily: "Ubuntu Mono"

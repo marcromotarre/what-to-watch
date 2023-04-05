@@ -14,7 +14,3 @@ export const order_by_popularity = (movies: Array<Movie>): Array<Movie> => {
   );
 };
 
-function has_decimals(n: number): number {
-  let result = n - Math.floor(n) !== 0;
-  return result ? n * 1000 : n;
-}

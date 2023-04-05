@@ -1,9 +1,9 @@
 const fs = require("fs");
 const puppeteer = require("puppeteer");
 
-const JUST_WATCH_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/just_watch/results/just-watch-movies.json";
+const JUST_WATCH_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/just-watch/results/just-watch-movies.json";
 const IMDB_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/imdb/results/imdb-movies.json";
-const JUST_WATCH_MOVIES_NOT_FOUND_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/just_watch/results/just-watch-movies_not_found.json";
+const JUST_WATCH_MOVIES_NOT_FOUND_FILE_PATH = "/Users/marc.romo@attackiq.com/Documents/front/what-to-watch/src/scrap/just-watch/results/just-watch-movies_not_found.json";
 
 (async () => {
   let not_found_movies = await get_not_found_movies();

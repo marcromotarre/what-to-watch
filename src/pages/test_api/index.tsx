@@ -31,7 +31,7 @@ export default function Home() {
   const page = 0;
   const limit = 20;
   const genres = [];
-  const order = ["popularity", "num_votes", "score", "year"];
+  const order = ["popularity", "num_votes", "rating", "year"];
 
   const movies_array = Object.keys(movies).map((movie_id) => movies[movie_id]);
 

@@ -4,13 +4,17 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { useIsVisible } from "../../hooks/useIsVisible";
 import BorderPoster from "../../components/posters/border-poster";
 import { getChipsByTag } from "../../data/chips";
 import POSTERS from "../../data/posters";
 
-export default function WidgetCarousel({ name, filters, order }) {
+export default function WidgetCarousel({
+  name = "Widget Name",
+  filters = [],
+  order,
+}) {
   // build query
 
   const PAGE_SIZE = 10;
@@ -27,14 +31,14 @@ export default function WidgetCarousel({ name, filters, order }) {
   }, [isVisible]);
 
   useEffect(() => {
-    get_movies({});
+    get_movies({ filters });
   }, []);
 
   const get_movies = async ({
     page = 0,
     limit = PAGE_SIZE,
     filters = [],
-    order = ["popularity", "num_votes", "score", "year"],
+    order = ["popularity", "num_votes", "rating", "year"],
   }) => {
     const url = `http://localhost:3000/api/movies`;
     const { data } = await axios.post(url, { page, limit, filters, order });
@@ -46,6 +50,9 @@ export default function WidgetCarousel({ name, filters, order }) {
   const POSTER_WIDTH = 150;
   return (
     <Box sx={{ backgroundColor: "black" }}>
+      <Box>
+        <Typography sx={{color: "white"}}>{name}</Typography>
+      </Box>
       <Box
         sx={{
           display: "grid",
