@@ -32,7 +32,7 @@
     "data": {
       "name": "Peliculas estrenadas el año pasado",
       "movie_poster": {
-        "chip_name": "SMALL_CHIP_FILMAFFINITY",
+        "chip_name": "SMALL_CHIP_FILMAFFINITY_WITH_PLATFORM",
         "poster_type": "ROUNDED"
       },
       "rating_platform": "filmaffinity",

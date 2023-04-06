@@ -12,11 +12,11 @@ const FilmaffinitySmallChip = ({ rating }) => {
   return (
     <Box
       sx={{
-        width: "70px",
-        height: "35px",
+        width: "50px",
+        height: "25px",
         position: "absolute",
-        left: "calc(50% - 35px)",
-        bottom: "-5px",
+        left: "calc(83% - 25px)",
+        bottom: "0px",
         display: "flex",
         alignItems: "center",
         zIndex: 20,
@@ -26,8 +26,8 @@ const FilmaffinitySmallChip = ({ rating }) => {
         sx={{
           width: "25px",
           height: "25px",
-          backgroundColor: "red",
-          height: "90%",
+          backgroundColor: "#4682B4",
+          height: "100%",
           borderRadius: "5px",
           zIndex: "1",
           position: "relative",
@@ -57,7 +57,7 @@ const FilmaffinitySmallChip = ({ rating }) => {
           height: "fit-content",
           width: "fit-content",
           right: "4px",
-          fontSize: "1.2rem",
+          fontSize: "0.8rem",
           zIndex: 2,
           position: "absolute",
         }}
