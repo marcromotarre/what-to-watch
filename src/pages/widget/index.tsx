@@ -17,11 +17,21 @@ export default function WidgetConfiguration() {
   const widget_keys = Object.keys(userWidgets);
   return (
     <Box sx={{ backgroundColor: "#3D3D3D" }}>
-      <WidgetNameSection widget_id={widget_keys[0]} />
-      <RankingPlatformSection widget_id={widget_keys[0]} />
-      <WidgetOrderSection widget_id={widget_keys[0]} />
-      <WidgetFiltersSection widget_id={widget_keys[0]} />
-      <WidgetChipSection widget_id={widget_keys[0]} />
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "auto",
+          rowGap: 3,
+           width: "calc(100% - 60px)",
+          marginLeft: "30px",
+        }}
+      >
+        <WidgetNameSection widget_id={widget_keys[0]} />
+        <RankingPlatformSection widget_id={widget_keys[0]} />
+        <WidgetOrderSection widget_id={widget_keys[0]} />
+        <WidgetFiltersSection widget_id={widget_keys[0]} />
+        <WidgetChipSection widget_id={widget_keys[0]} />
+      </Box>
     </Box>
   );
 }

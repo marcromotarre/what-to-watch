@@ -1,7 +1,7 @@
+import { inter_black, inter_extra_light, inter_light, inter_medium } from "@/fonts/inter";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { ReactNode } from "react";
-import {inter900, inter100} from "../../fonts/inter"
 
 export default function ConfigSection({
   title,
@@ -14,12 +14,12 @@ export default function ConfigSection({
         sx={{ display: "grid", gridTemplateColumns: "auto", rowGap: "10px" }}
       >
         {title && (
-          <Typography className={inter100.className} variant="h6">
+          <Typography className={inter_medium.className} variant="body1">
             {title}
           </Typography>
         )}
         {subtitle && (
-          <Typography className={inter100.className} variant="body2">
+          <Typography className={inter_light.className} variant="body2">
             {subtitle}
           </Typography>
         )}
@@ -33,7 +33,7 @@ export default function ConfigSection({
             justifyContent: "center",
           }}
         >
-          <Box sx={{ width: "calc(100% - 20px)" }}>{children}</Box>
+          <Box sx={{ width: "calc(100%)" }}>{children}</Box>
         </Box>
       )}
     </Box>

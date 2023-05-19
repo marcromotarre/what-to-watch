@@ -7,8 +7,6 @@ import { useRecoilState } from "recoil";
 import { userWidgetsState } from "@/states/user-state";
 
 const RankingPlatformSection = ({ widget_id }: ComponentProps) => {
-
-  console.log(widget_id)
   const onRankingPalformClick = () => {};
   const [widgets, setWidgets] = useRecoilState(userWidgetsState);
   const set_ranking_platform = (ranking_platform: string) => {
@@ -20,7 +18,8 @@ const RankingPlatformSection = ({ widget_id }: ComponentProps) => {
 
   const widget = widgets[widget_id];
   return (
-    <ConfigSection title={"¿Cual es tu motor de puntuación favorito?"}>
+    <ConfigSection title={"¿Cual es tu motor de puntuación favorito?"}
+    subtitle={"Usaremos la plataforma que elijas para filtrar y ordenar por puntuación"}>
       <Box>
         <Box
           sx={{
@@ -36,7 +35,7 @@ const RankingPlatformSection = ({ widget_id }: ComponentProps) => {
               gridTemplateColumns: "auto auto auto",
               columnGap: "40px",
               rowGap: "40px",
-              width: "95%",
+              width: "80%",
             }}
           >
             {RANKING_PLATFORMS.map((rankingPlantform, index) => (
