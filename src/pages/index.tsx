@@ -3,7 +3,7 @@ import WidgetCarousel from "@/components/widgets/widget-carousel";
 import { Box } from "@mui/material";
 
 export default function Home() {
-
+  const widget_keys = Object.keys(user_widgets);
   return (
     <Box
       sx={{
@@ -11,11 +11,11 @@ export default function Home() {
         display: "grid",
         gridTemplateColumns: "100%",
         rowGap: 4,
-        paddingTop: 7
+        paddingTop: 7,
       }}
     >
-      {user_widgets.map(({ data }, index) => (
-        <WidgetCarousel key={index} {...data} />
+      {widget_keys.map((widget_key: string) => (
+        <WidgetCarousel key={widget_key} {...user_widgets[widget_key].data} />
       ))}
     </Box>
   );

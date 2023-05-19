@@ -1,5 +1,5 @@
-[
-  {
+{
+  "9e79ae94-46f3-45c0-9b9b-879aff2b618a": {
     "type": "carousel",
     "data": {
       "name": "Peliculas estrenadas este año",
@@ -24,10 +24,10 @@
           }
         }
       ],
-      "order": ["popularity", "num_votes", "rating", "year"]
+      "order": ["year", "popularity", "num_votes", "rating"]
     }
   },
-  {
+  "f4c537f3-9974-4ee3-aa9b-ce2c620434fc": {
     "type": "carousel",
     "data": {
       "name": "Peliculas estrenadas el año pasado",
@@ -62,7 +62,7 @@
       "order": ["popularity", "num_votes", "rating", "year"]
     }
   },
-  {
+  "befef31d-b4eb-46fc-8ba6-9356685e525a": {
     "type": "carousel",
     "data": {
       "name": "Peliculas de Comedia",
@@ -94,7 +94,7 @@
       "order": ["popularity", "num_votes", "rating", "year"]
     }
   },
-  {
+  "f12f0c74-3589-4bae-ae6a-9c7c51229c40": {
     "type": "carousel",
     "data": {
       "name": "Peliculas de Animación",
@@ -126,7 +126,7 @@
       "order": ["popularity", "num_votes", "rating", "year"]
     }
   },
-  {
+  "3042f2e1-5d1e-4b77-a75a-1199eb7b5392": {
     "type": "carousel",
     "data": {
       "name": "Peliculas de Terror",
@@ -151,8 +151,7 @@
       "order": ["popularity", "num_votes", "rating", "year"]
     }
   },
-
-  {
+  "e9dbacf4-3e4d-47bd-9c2a-0aed10475a74": {
     "type": "carousel",
     "data": {
       "name": "Peliculas de Leonardo DiCaprio",
@@ -173,4 +172,4 @@
       "order": ["popularity", "num_votes", "rating", "year"]
     }
   }
-]
+}

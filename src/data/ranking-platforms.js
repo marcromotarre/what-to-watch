@@ -1,4 +1,3 @@
-import axios from "axios";
 import FILMAFFINITY_APP_ICON from "../../src/images/ranking-platforms/filmaffinity/filmaffinity-app-icon.png";
 import IMDB_APP_ICON from "../../src/images/ranking-platforms/imdb/imdb-app-icon.png";
 import ROTTEN_TOMATOES_APP_ICON from "../../src/images/ranking-platforms/rotten-tomatoes/rotten-tomatoes-app-icon.png";
@@ -12,14 +11,14 @@ import { BASE_URL } from "../states/user-state";
 
 const RANKING_PLATFORMS = [
   {
-    name: "FILMAFFINITY",
+    name: "filmaffinity",
     appIcon: FILMAFFINITY_APP_ICON,
     minimumRating: 0,
     minimumVotes: 0,
   },
-  { name: "IMDB", appIcon: IMDB_APP_ICON },
+  { name: "imdb", appIcon: IMDB_APP_ICON },
   {
-    name: "ROTTEN_TOMATOES",
+    name: "rotten_tomatoes",
     appIcon: ROTTEN_TOMATOES_APP_ICON,
   },
 ];
