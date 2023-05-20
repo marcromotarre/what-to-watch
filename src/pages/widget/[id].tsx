@@ -20,7 +20,6 @@ export default function WidgetConfiguration() {
   const widget_keys = Object.keys(userWidgets);
 
   const is_widget_created = userWidgets.hasOwnProperty(widget_id);
-  console.log(widget_id, is_widget_created);
   return (
     <Box sx={{ backgroundColor: "#3D3D3D" }}>
       {is_widget_created && (

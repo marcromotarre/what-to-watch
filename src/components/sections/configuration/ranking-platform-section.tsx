@@ -2,21 +2,22 @@ import RANKING_PLATFORMS, { RANKING_PLATFORMS_SLIDERS } from "@/data/ranking-pla
 import { Box, CardMedia } from "@mui/material";
 import { Widget } from "@/interfaces/Widget";
 import ConfigSection from "../config-section";
-import { set_ranking_platform } from "@/utils/widget/configuration";
+import { set_widget_ranking_platform } from "@/utils/widget/configuration";
 import { useRecoilState } from "recoil";
 import { userWidgetsState } from "@/states/user-state";
 
 const RankingPlatformSection = ({ widget_id }: ComponentProps) => {
-  const onRankingPalformClick = () => {};
-  const [widgets, setWidgets] = useRecoilState(userWidgetsState);
-  const set_ranking_platform = (ranking_platform: string) => {
-    setWidgets({
-      ...widgets,
-      widget_id: { ...widgets[widget_id], ranking_platform: ranking_platform },
+  const [userWidgets, setUserWidgets] = useRecoilState(userWidgetsState);
+  const handleRankingPlatformClick = (ranking_platform: string) => {
+    const modified_widgets = set_widget_ranking_platform({
+      widgets: userWidgets,
+      widget_id,
+      ranking_platform,
     });
+    setUserWidgets(modified_widgets);
   };
 
-  const widget = widgets[widget_id];
+  const widget = userWidgets[widget_id];
   return (
     <ConfigSection title={"¿Cual es tu motor de puntuación favorito?"}
     subtitle={"Usaremos la plataforma que elijas para filtrar y ordenar por puntuación"}>
@@ -43,7 +44,7 @@ const RankingPlatformSection = ({ widget_id }: ComponentProps) => {
                 key={rankingPlantform.name}
                 component="img"
                 onClick={() => {
-                  set_ranking_platform(rankingPlantform.name);
+                  handleRankingPlatformClick(rankingPlantform.name);
                 }}
                 sx={{
                   width: "100%",
@@ -64,10 +65,9 @@ const RankingPlatformSection = ({ widget_id }: ComponentProps) => {
           </Box>
         </Box>
       </Box>
-      {/*
-          RANKING_PLATFORMS_SLIDERS({
+          {/*RANKING_PLATFORMS_SLIDERS({
             userRankingPlatforms,
-            setUserRankingPlatforms,
+            ()=> {},
           })[userRankingPlatforms.ranking_platform].map((slider, index) => {
             return <ConfigSectionSlider key={index} slider={slider} />;
           })*/}

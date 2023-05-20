@@ -106,7 +106,7 @@
       "filters": [
         {
           "type": "genres",
-          "data": { "genres": [16], "filter_type": "SOME" }
+          "data": { "genres": [16, 18], "filter_type": "SOME" }
         },
         {
           "type": "rating",

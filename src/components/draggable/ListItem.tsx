@@ -6,7 +6,7 @@ import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import DragHandleRoundedIcon from "@mui/icons-material/DragHandleRounded";
 import { inter_medium } from "../../fonts/inter";
 
-export const ListItem = ({ text, index, moveListItem, children }) => {
+export const ListItem = ({ data, text, index, moveListItem, children }) => {
   // useDrag - the list item is draggable
   const [{ isDragging }, dragRef] = useDrag({
     type: "item",
@@ -52,6 +52,7 @@ export const ListItem = ({ text, index, moveListItem, children }) => {
         text,
         dragDropRef,
         isDragging,
+        data
       })}
     </Box>
   );

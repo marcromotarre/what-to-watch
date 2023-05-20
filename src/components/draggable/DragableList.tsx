@@ -29,6 +29,7 @@ export const DragableList = ({ elements, children, onChange }) => {
             key={option.id}
             index={index}
             text={option.name}
+            data={option.data}
             moveListItem={moveOptionListItem}
           >
             {children}

@@ -1,3 +1,7 @@
+export type Widgets = {
+  [key: string]: Widget
+}
+
 export type Widget = {
   type: string;
   data: WidgetData;
@@ -9,6 +13,7 @@ export type WidgetData = {
   movie_poster: WidgetMoviePoster;
   rating_platform: string;
   filters: Array<WidgetFilter>;
+  order: Array<string>
 };
 
 export type WidgetMoviePoster = {

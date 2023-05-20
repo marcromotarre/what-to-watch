@@ -5,6 +5,7 @@ import { theme } from "../styles/theme";
 import { RecoilRoot } from "recoil";
 import { DndProvider } from "react-dnd";
 import { TouchBackend } from "react-dnd-touch-backend";
+import { HTML5Backend } from "react-dnd-html5-backend";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
