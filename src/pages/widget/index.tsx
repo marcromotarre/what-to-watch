@@ -1,88 +1,133 @@
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Button, Card, Typography } from "@mui/material";
 
-import { userWidgetsState } from "../../states/user-state";
-import { useRecoilValue } from "recoil";
+import { userPlatformsState, userWidgetsState } from "../../states/user-state";
+import { useRecoilState, useRecoilValue } from "recoil";
 
-import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import { inter_medium } from "@/fonts/inter";
 import { DragableList } from "@/components/draggable/DragableList";
-import EditIcon from "@mui/icons-material/Edit";
 import { useRouter } from "next/router";
-
-const DragableWidgetCard = ({
-  text = "",
-  isDragging = false,
-  dragDropRef = () => {},
-  data = {},
-}) => {
-  const router = useRouter();
-
-  const { widget_id } = data;
-  const extraStylesOnDragging = isDragging
-    ? { boxShadow: "0px 0px 42px -3px rgba(0,0,0,0.77);" }
-    : { boxShadow: "0" };
-
-  const editWidget = () => {
-    router.push(`/widget/${widget_id}`)
-  };
-
-  return (
-    <Card
-      ref={dragDropRef}
-      sx={{
-        display: "grid",
-        gridTemplateColumns: "20px auto 20px",
-        width: "100%",
-        columnGap: 1,
-        backgroundColor: "#3D3D3D",
-        padding: 1,
-        borderRadius: "5px",
-        alignItems: "center",
-        ...extraStylesOnDragging,
-      }}
-    >
-      <DragIndicatorIcon sx={{ color: "white" }} />
-
-      <Typography variant="body2" className={inter_medium.className}>
-        {text}
-      </Typography>
-
-      <Box>
-        <EditIcon
-          onClick={() => editWidget()}
-          sx={{ width: "80%", height: "auto", color: "white" }}
-        />
-      </Box>
-    </Card>
-  );
-};
+import DraggableWidgetCard from "@/components/draggable/dragable-widget-card";
+import { useEffect, useState } from "react";
+import ConfigSection from "@/components/sections/config-section";
+import DraggablePlatformCard from "@/components/draggable/dragable-platform-card";
+import { set_platforms_order } from "@/utils/platform/configuration";
 
 export default function WidgetConfiguration() {
   const userWidgets = useRecoilValue(userWidgetsState);
-  const widget_keys = Object.keys(userWidgets);
+  const [userPlatforms, setUserPlatforms] = useRecoilState(userPlatformsState);
+  
+  const [elements, setElements] = useState([]);
+  const [platforms, setPlatforms] = useState([]);
+
+  useEffect(() => {
+    setElements(
+      Object.keys(userWidgets).map((widget_id, index) => ({
+        id: index + 1,
+        name: userWidgets[widget_id].data.name,
+        data: { widget_id },
+      }))
+    );
+  }, [userWidgets]);
+
+  useEffect(() => {
+    setPlatforms(
+      userPlatforms.map(({id, name, has}, index) => ({
+        id: index + 1,
+        name: name,
+        data: { id, has },
+      }))
+    );
+  }, [userPlatforms]);
+
+  const create_new_widget = () => {
+    console.log("create_new_widget");
+  };
+
+  const savePlatformsOrder = (platforms_order) => {
+    const current_order = userPlatforms.map(({id}) => id);
+    const transformed_order = platforms_order.map(({data}) => data.id);
+    if (JSON.stringify(transformed_order) !== JSON.stringify(current_order)) {
+      const ordered_platforms = set_platforms_order({
+        platforms: userPlatforms,
+        platforms_order: transformed_order,
+      });
+      setUserPlatforms(ordered_platforms)
+    }
+  };
+
 
   return (
-    <Box sx={{ backgroundColor: "#3D3D3D" }}>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "auto",
-          rowGap: 3,
-          width: "calc(100% - 60px)",
-          marginLeft: "30px",
-        }}
+    <Box
+      sx={{
+        backgroundColor: "#3D3D3D",
+        display: "grid",
+        rowGap: 2,
+        padding: "0px 30px",
+      }}
+    >
+      <ConfigSection
+        title={"¿Que platafotmas tienes?"}
+        subtitle={`Pulsa para activar o desactivar.
+          Arrastra para ordenarlas. La odenación se usa para que sepas de forma rápida en que plataforma puedes ver la pelicula.`}
       >
-        <DragableList
-          onChange={() => {}}
-          elements={widget_keys.map((widget_key, index) => ({
-            id: index + 1,
-            data: { widget_id: widget_key },
-            name: userWidgets[widget_key].data.name,
-          }))}
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "auto",
+            rowGap: 3,
+            width: "calc(100% - 60px)",
+            marginLeft: "30px",
+          }}
         >
-          <DragableWidgetCard />
-        </DragableList>
-      </Box>
+          {
+            <DragableList onChange={savePlatformsOrder} elements={platforms}>
+              <DraggablePlatformCard />
+            </DragableList>
+          }
+        </Box>
+      </ConfigSection>
+      <ConfigSection
+        title={"Vamos a configurar tus widgets"}
+        subtitle={
+          "Pulsa para activar o desactivar.\nArrastra para ordenarlas. La odenación se usa para que sepas de forma rápida en que plataforma puedes ver la pelicula."
+        }
+      >
+        <Box sx={{ display: "grid", rowGap: 3 }}>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "auto",
+              rowGap: 3,
+              width: "calc(100% - 60px)",
+              marginLeft: "30px",
+            }}
+          >
+            {
+              <DragableList onChange={()=>{}} elements={elements}>
+                <DraggableWidgetCard />
+              </DragableList>
+            }
+          </Box>
+          <Box
+            sx={{
+              backgroundColor: "#646464",
+              borderRadius: "5px",
+              width: "fit-content",
+              padding: 1,
+              justifySelf: "center",
+            }}
+            onClick={() => create_new_widget()}
+          >
+            <Typography
+              sx={{ color: "#3D3D3D" }}
+              variant="body2"
+              className={inter_medium.className}
+            >
+              Crea un nuevo widget
+            </Typography>
+          </Box>
+        </Box>
+      </ConfigSection>
     </Box>
   );
 }

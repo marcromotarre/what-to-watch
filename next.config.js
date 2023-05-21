@@ -1,8 +1,9 @@
 const webpack = require("webpack");
 
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   env: {
     FILMOTEK_API: "http://localhost:3005",

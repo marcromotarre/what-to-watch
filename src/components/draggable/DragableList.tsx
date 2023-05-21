@@ -1,9 +1,12 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { ListItem } from "./ListItem";
 import { Box } from "@mui/material";
 
-export const DragableList = ({ elements, children, onChange }) => {
+export const DragableList = ({ elements = [], children, onChange }) => {
   const [options, setOptions] = useState(elements);
+  useEffect(() => {
+    setOptions(elements);
+  }, [elements]);
 
   const moveOptionListItem = useCallback(
     (dragIndex, hoverIndex) => {

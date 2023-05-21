@@ -24,7 +24,7 @@ const apply_filter_genre = ({
       filter_type: "SOME",
     },
   });
-  set_widgets(modified_widgets)
+  set_widgets(modified_widgets);
 };
 
 export const get_filters = (widgetFilters: Array<WidgetFilter>) => {
@@ -50,6 +50,29 @@ export const get_filters = (widgetFilters: Array<WidgetFilter>) => {
           });
         },
       })),
+    },
+    {
+      name: "Filtrar por Año",
+      options: [
+        "Peliculas de la decada de los 50",
+        "Peliculas de la decada de los 60",
+        "Peliculas de la decada de los 70",
+        "Peliculas de la decada de los 80",
+        "Peliculas de la decada de los 90",
+        "Peliculas de los 2000",
+        "Peliculas de esta decada",
+        "Peliculas del año pasado",
+        "Peliculas de este año"
+      ].map(value => ({})),
+      click: ({ widget_id, widgets, set_widgets, options, option }) => {
+        apply_filter_genre({
+          widget_id,
+          widgets,
+          set_widgets,
+          options,
+          option,
+        });
+      },
     },
   ];
 };
