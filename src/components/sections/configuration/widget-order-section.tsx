@@ -45,16 +45,15 @@ const WidgetNameSection = ({ widget_id }: ComponentProps) => {
   // get actual order
   const [userWidgets, setUserWidgets] = useRecoilState(userWidgetsState);
   const order = userWidgets[widget_id]?.data?.order
-    ? userWidgets[widget_id].data.order.map(
-        (order_value) =>
-          ORDER.find(({ identity }) => identity === order_value).name
-      )
+    ? userWidgets[widget_id].data.order.map((order_value: any) => {
+        return ORDER.find((order: any) => order.identity === order_value).name;
+      })
     : ORDER.map(({ name }) => name);
 
-  const saveOrder = (order) => {
+  const saveOrder = (order: any) => {
     const current_order = userWidgets[widget_id].data.order;
     const transformed_order = order.map(
-      ({ name: order_name }) =>
+      ({ name: order_name }: any) =>
         ORDER.find(({ name }) => name === order_name)?.identity
     );
     if (JSON.stringify(transformed_order) !== JSON.stringify(current_order)) {
@@ -70,7 +69,10 @@ const WidgetNameSection = ({ widget_id }: ComponentProps) => {
     <ConfigSection title={"¿Como quieres ordenar las peliculas?"}>
       <DragableList
         onChange={saveOrder}
-        elements={order.map((text, index) => ({ id: index + 1, name: text }))}
+        elements={order.map((text: any, index: number) => ({
+          id: index + 1,
+          name: text,
+        }))}
       >
         <OrderElementComponent />
       </DragableList>

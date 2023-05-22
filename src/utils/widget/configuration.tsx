@@ -63,6 +63,8 @@ export const set_widget_filter = ({
   widgets: Widgets;
   widget_id: string;
   order: Array<string>;
+  filter_type: string;
+  filter_data: any
 }) => {
   const _widgets = copy_widgets(widgets);
 

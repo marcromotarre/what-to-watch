@@ -1,19 +1,12 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 import just_watch_movies from "../../scrap/just-watch/results/old/just-watch-movies.json";
-import imdb_movies from "../../scrap/imdb/results/imdb-movies.json";
-import WidgetCarousel from "@/components/widgets/widget-carousel";
 import { Box, Button } from "@mui/material";
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const just_watch_movies_ids = Object.keys(just_watch_movies).filter(
     (_, index) => index < 1
   );
 
-  const open_just_watch = (just_watch_id) => {
+  const open_just_watch = (just_watch_id: any) => {
     window.open(
       `https://www.justwatch.com${just_watch_id}`,
       "_blank",
@@ -21,7 +14,7 @@ export default function Home() {
     );
   };
 
-  const open_google_imdb = (just_watch_id) => {
+  const open_google_imdb = (just_watch_id: any) => {
     const just_watch_movie_title = just_watch_id.replace("/es/pelicula/", "");
     window.open(
       `https://www.google.com/search?q=${just_watch_movie_title}+imdb`,

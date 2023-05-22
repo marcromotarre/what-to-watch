@@ -10,7 +10,8 @@ import { order_by_year } from "@/utils/order/order-by-year";
 import { order_by_rating } from "@/utils/order/order-by-rating";
 import { order_by_num_votes } from "@/utils/order/order-by-num-votes";
 
-export default function handler(req, res) {
+type Movies = { [k: string]: any };
+export default function handler(req: any, res: any) {
   const {
     filters = [],
     order = ["popularity", "num_votes", "rating", "year"],
@@ -18,12 +19,14 @@ export default function handler(req, res) {
     limit = 40,
   } = req.body;
 
-  const movies_array = Object.keys(movies).map((movie_id) => movies[movie_id]);
+  const _movies: Movies = movies
+
+  const movies_array = Object.keys(movies).map((movie_id) => _movies[movie_id]);
 
   // apply filters
   let filtered_movies = [...movies_array];
 
-  filters.forEach((filter) => {
+  filters.forEach((filter: any) => {
     filtered_movies = [
       ...FILTER_FUNCTIONS[filter.type]({
         movies: filtered_movies,
@@ -55,14 +58,14 @@ export default function handler(req, res) {
   });
 }
 
-const ORDER_FUNCTIONS = {
+const ORDER_FUNCTIONS: { [k: string]: any } = {
   popularity: order_by_popularity,
   rating: order_by_rating,
   num_votes: order_by_num_votes, //order_by_num_votes,
   year: order_by_year,
 };
 
-const FILTER_FUNCTIONS = {
+const FILTER_FUNCTIONS: { [k: string]: any } = {
   num_votes: filter_by_num_votes,
   rating: filter_by_rating,
   year: filter_by_year, 

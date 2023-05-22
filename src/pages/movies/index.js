@@ -1,12 +1,7 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Box, Stack } from "@mui/material";
 import { useIsVisible } from "../../hooks/useIsVisible";
-import BorderPoster from "../../components/posters/border-poster";
 import { getChipsByTag } from "../../components/chips/chips";
 import POSTERS from "../../data/posters";
 

@@ -1,9 +1,12 @@
 import user_widgets from "../data/widgets.json";
 import WidgetCarousel from "@/components/widgets/widget-carousel";
+import { userWidgetsState } from "@/states/user-state";
 import { Box } from "@mui/material";
+import { useRecoilValue } from "recoil";
 
 export default function Home() {
-  const widget_keys = Object.keys(user_widgets);
+  const userWidgets = useRecoilValue(userWidgetsState)
+  const widget_keys = Object.keys(userWidgets)
   return (
     <Box
       sx={{
@@ -15,7 +18,7 @@ export default function Home() {
       }}
     >
       {widget_keys.map((widget_key: string) => (
-        <WidgetCarousel key={widget_key} {...user_widgets[widget_key].data} />
+        <WidgetCarousel key={widget_key} {...userWidgets[widget_key].data} />
       ))}
     </Box>
   );

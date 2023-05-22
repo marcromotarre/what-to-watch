@@ -6,7 +6,7 @@ import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import DragHandleRoundedIcon from "@mui/icons-material/DragHandleRounded";
 import { inter_medium } from "../../fonts/inter";
 
-export const ListItem = ({ data, text, index, moveListItem, children }) => {
+export const ListItem = ({ data, text, index, moveListItem, children }: any) => {
   // useDrag - the list item is draggable
   const [{ isDragging }, dragRef] = useDrag({
     type: "item",
@@ -19,7 +19,7 @@ export const ListItem = ({ data, text, index, moveListItem, children }) => {
   // useDrop - the list item is also a drop area
   const [spec, dropRef] = useDrop({
     accept: "item",
-    hover: (item, monitor) => {
+    hover: (item: any, monitor: any) => {
       const dragIndex = item.index;
       const hoverIndex = index;
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
@@ -38,13 +38,9 @@ export const ListItem = ({ data, text, index, moveListItem, children }) => {
   });
 
   // Join the 2 refs together into one (both draggable and can be dropped on)
-  const ref = useRef(null);
-  const dragDropRef = dragRef(dropRef(ref));
+  const ref: any = useRef(null);
+  const dragDropRef: any = dragRef(dropRef(ref));
   
-  const renderChildren = () => {
-    return children;
-  };
-
   // Make items being dragged transparent, so it's easier to see where we drop them
   return (
     <Box>

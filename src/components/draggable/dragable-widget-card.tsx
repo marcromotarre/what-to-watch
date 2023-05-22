@@ -9,7 +9,7 @@ const DraggableWidgetCard = ({
     isDragging = false,
     dragDropRef = () => {},
     data = {},
-  }) => {
+  }: any) => {
     const router = useRouter();
   
     const { widget_id } = data;

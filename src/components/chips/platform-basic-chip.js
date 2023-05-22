@@ -1,13 +1,8 @@
-import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { Inter } from "@next/font/google";
 import Image from "next/image";
 import PLATFORM_CHIP_ICON from "../../images/platforms/disney-plus/disney-plus-app-icon.png"
 
-const inter = Inter({
-  weight: "600",
-  subsets: ['latin']
-});
+
 const PlatformBasicChip = ({ rating }) => {
   return (
     <Box

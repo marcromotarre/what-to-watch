@@ -3,14 +3,12 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
-  Checkbox,
-  Input,
   Typography,
 } from "@mui/material";
 import ConfigSection from "../config-section";
 import { inter_light, inter_medium } from "@/fonts/inter";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
-import { FILTERS_BY_GENRE, get_filters } from "@/data/filters";
+import { get_filters } from "@/data/filters";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { userWidgetsState } from "@/states/user-state";
@@ -21,10 +19,10 @@ const WidgetFilterSection = ({
   widget_id,
   widgets,
   set_widgets,
-}) => {
+}: any) => {
   const [expanded, setExpanded] = useState(false);
   const number_filters_selected = options.filter(
-    ({ selected }) => selected
+    ({ selected }: any) => selected
   ).length;
   return (
     <Accordion
@@ -83,8 +81,9 @@ const WidgetFilterSection = ({
         >
           <Box></Box>
           <Box sx={{ display: "grid", rowGap: 1, paddingLeft: 1 }}>
-            {options.map((option) => (
+            {options.map((option: any, index: number) => (
               <Check
+                key={index}
                 onClick={() => {
                   option.click({
                     widget_id,
@@ -105,7 +104,7 @@ const WidgetFilterSection = ({
   );
 };
 
-const WidgetFiltersSection = ({ widget_id }) => {
+const WidgetFiltersSection = ({ widget_id }: any) => {
   const [userWidgets, setUserWidgets] = useRecoilState(userWidgetsState);
   const [filters, setFilters] = useState(
     get_filters(userWidgets[widget_id].data.filters)

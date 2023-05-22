@@ -4,25 +4,37 @@ import { useRouter } from "next/router";
 import EditIcon from "@mui/icons-material/Edit";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import { inter_medium } from "@/fonts/inter";
-import { click_on_platform } from "@/utils/platform/configuration";
+import {
+  click_on_platform,
+  get_platform_index,
+} from "@/utils/platform/configuration";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userPlatformsState } from "@/states/user-state";
+import { useState } from "react";
 const DraggablePlatformCard = ({
   text = "",
   isDragging = false,
   dragDropRef = () => {},
   data = {},
-}) => {
-  const [userPlatforms, setUserPlatforms] = useRecoilState(userPlatformsState);
-
+}: any) => {
+  const userPlatforms = useRecoilValue(userPlatformsState);
   const { has, id } = data;
+  const [userHas, setUserHas] = useState(has);
   const extraStylesOnDragging = isDragging
     ? { boxShadow: "0px 0px 42px -3px rgba(0,0,0,0.77);" }
     : { boxShadow: "0" };
 
   const clickOnPlatform = () => {
-    const modified_platforms = click_on_platform({ platforms: userPlatforms, platform_id: id });
-    setUserPlatforms(modified_platforms);
+    const platforms = click_on_platform({
+      platforms: userPlatforms,
+      platform_id: id,
+    });
+    const index = get_platform_index({
+      platforms: userPlatforms,
+      platform_id: id,
+    });
+    setUserHas(platforms[index].has);
+    // setUserPlatforms(modified_platforms);
   };
 
   // change order
@@ -39,14 +51,17 @@ const DraggablePlatformCard = ({
         padding: 1,
         borderRadius: "5px",
         alignItems: "center",
-        opacity: has ? 1 : 0.1,
         ...extraStylesOnDragging,
       }}
       onClick={() => clickOnPlatform()}
     >
-      <DragIndicatorIcon sx={{ color: "white" }} />
+      <DragIndicatorIcon sx={{ color: "white", opacity: userHas ? 1 : 0.1 }} />
 
-      <Typography variant="body2" className={inter_medium.className}>
+      <Typography
+        sx={{ opacity: userHas ? 1 : 0.1 }}
+        variant="body2"
+        className={inter_medium.className}
+      >
         {text}
       </Typography>
     </Card>

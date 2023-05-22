@@ -1,16 +1,16 @@
 import { inter_light } from "@/fonts/inter";
 import DoneIcon from "@mui/icons-material/Done";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 
-export const Check = ({ text, isSelected, onClick }) => {
+export const Check = ({ text, isSelected, onClick }: ComponentProps) => {
   const backgroundColor = isSelected ? "#D9D9D9" : "#3D3D3D";
 
   return (
     <Box
       sx={{ display: "grid", gridTemplateColumns: "14px auto", columnGap: 1 }}
-      onClick={onClick}
+      onClick={() => onClick()}
     >
       <Box
         sx={{
@@ -37,4 +37,10 @@ export const Check = ({ text, isSelected, onClick }) => {
       </Typography>
     </Box>
   );
+};
+
+type ComponentProps = {
+  text: string;
+  isSelected: boolean;
+  onClick: Function;
 };

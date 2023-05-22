@@ -1,13 +1,9 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { Inter } from "@next/font/google";
 import Image from "next/image";
 import FILMAFFINITY_CHIP_ICON from "../../images/ranking-platforms/filmaffinity/filmaffinity-chip-icon.png"
+import { inter_regular } from "@/fonts/inter";
 
-const inter = Inter({
-  weight: "600",
-  subsets: ['latin']
-});
 const FilmaffinityBasicChip = ({ rating }) => {
   return (
     <Box
@@ -51,7 +47,7 @@ const FilmaffinityBasicChip = ({ rating }) => {
         }}
       ></Box>
       <Typography
-        className={inter.className}
+        className={inter_regular.className}
         sx={{
           color: "#FFF",
           height: "fit-content",

@@ -15,8 +15,8 @@ import { set_platforms_order } from "@/utils/platform/configuration";
 export default function WidgetConfiguration() {
   const userWidgets = useRecoilValue(userWidgetsState);
   const [userPlatforms, setUserPlatforms] = useRecoilState(userPlatformsState);
-  
-  const [elements, setElements] = useState([]);
+
+  const [elements, setElements] = useState<any>([]);
   const [platforms, setPlatforms] = useState([]);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function WidgetConfiguration() {
 
   useEffect(() => {
     setPlatforms(
-      userPlatforms.map(({id, name, has}, index) => ({
+      userPlatforms.map(({ id, name, has }: any, index: number) => ({
         id: index + 1,
         name: name,
         data: { id, has },
@@ -43,18 +43,16 @@ export default function WidgetConfiguration() {
     console.log("create_new_widget");
   };
 
-  const savePlatformsOrder = (platforms_order) => {
-    const current_order = userPlatforms.map(({id}) => id);
-    const transformed_order = platforms_order.map(({data}) => data.id);
+  const savePlatformsOrder = (platforms_order: any) => {
+    const current_order = userPlatforms.map(({ id }: any) => id);
+    const transformed_order = platforms_order.map(({ data }: any) => data.id);
     if (JSON.stringify(transformed_order) !== JSON.stringify(current_order)) {
-      const ordered_platforms = set_platforms_order({
+      set_platforms_order({
         platforms: userPlatforms,
         platforms_order: transformed_order,
       });
-      setUserPlatforms(ordered_platforms)
     }
   };
-
 
   return (
     <Box
@@ -103,7 +101,7 @@ export default function WidgetConfiguration() {
             }}
           >
             {
-              <DragableList onChange={()=>{}} elements={elements}>
+              <DragableList onChange={() => {}} elements={elements}>
                 <DraggableWidgetCard />
               </DragableList>
             }

@@ -1,14 +1,11 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { Inter } from "@next/font/google";
 import Image from "next/image";
 import IMDB_CHIP_ICON from "../../images/ranking-platforms/imdb/imdb-chip-icon.png";
+import { inter_bold } from "@/fonts/inter";
 
 
-const inter = Inter({
-  weight: "900",
-  subsets: ['latin']
-});
+
 const ImdbBasicChip = ({ rating }) => {
    
   return (
@@ -52,7 +49,7 @@ const ImdbBasicChip = ({ rating }) => {
         }}
       ></Box>
       <Typography
-        className={inter.className}
+        className={inter_bold.className}
         sx={{
           color: "#F6C700",
           height: "fit-content",

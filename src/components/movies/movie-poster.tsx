@@ -1,4 +1,3 @@
-import { getChipsByTag } from "@/components/chips/chips";
 import POSTERS from "@/data/posters";
 import Movie from "@/interfaces/Movie";
 import get_chip_by_name from "@/utils/chip/get-chip-by-name";
@@ -28,7 +27,7 @@ export default function MoviePoster({
 }
 
 type MoviePosterProps = {
-  movie: Movie;
+  movie: any;
   chip: string;
   poster: string;
   rating_platform: string;

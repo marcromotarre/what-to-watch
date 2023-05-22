@@ -2,18 +2,18 @@ import React, { useState, useCallback, useEffect } from "react";
 import { ListItem } from "./ListItem";
 import { Box } from "@mui/material";
 
-export const DragableList = ({ elements = [], children, onChange }) => {
+export const DragableList = ({ elements = [], children, onChange }: any) => {
   const [options, setOptions] = useState(elements);
   useEffect(() => {
     setOptions(elements);
   }, [elements]);
 
   const moveOptionListItem = useCallback(
-    (dragIndex, hoverIndex) => {
+    (dragIndex: any, hoverIndex: any) => {
       const dragItem = options[dragIndex];
       const hoverItem = options[hoverIndex];
       // Swap places of dragItem and hoverItem in the options array
-      setOptions((options) => {
+      setOptions((options: any) => {
         const updateOptions = [...options];
         updateOptions[dragIndex] = hoverItem;
         updateOptions[hoverIndex] = dragItem;
@@ -27,7 +27,7 @@ export const DragableList = ({ elements = [], children, onChange }) => {
   return (
     <div>
       <Box sx={{ display: "grid", gridTemplateColumns: "auto", rowGap: 1 }}>
-        {options.map((option, index) => (
+        {options.map((option: any, index: any) => (
           <ListItem
             key={option.id}
             index={index}
