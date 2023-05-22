@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 import EditIcon from "@mui/icons-material/Edit";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
-import { inter_medium } from "@/fonts/inter";
 const DraggableWidgetCard = ({
     text = "",
     isDragging = false,
@@ -38,7 +37,7 @@ const DraggableWidgetCard = ({
       >
         <DragIndicatorIcon sx={{ color: "white" }} />
   
-        <Typography variant="body2" className={inter_medium.className}>
+        <Typography variant="subtitle2">
           {text}
         </Typography>
   

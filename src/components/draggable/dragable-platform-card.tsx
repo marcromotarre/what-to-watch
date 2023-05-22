@@ -57,11 +57,7 @@ const DraggablePlatformCard = ({
     >
       <DragIndicatorIcon sx={{ color: "white", opacity: userHas ? 1 : 0.1 }} />
 
-      <Typography
-        sx={{ opacity: userHas ? 1 : 0.1 }}
-        variant="body2"
-        className={inter_medium.className}
-      >
+      <Typography sx={{ opacity: userHas ? 1 : 0.1 }} variant="subtitle2">
         {text}
       </Typography>
     </Card>

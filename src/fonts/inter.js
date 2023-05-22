@@ -58,8 +58,8 @@ export const inter_black = inter900
 
 */
 
-/*
-const inter = localFont({
+
+/*const inter = localFont({
   src: [
     {
       path: './Inter/static/Inter-Black.ttf',
@@ -82,8 +82,8 @@ const inter = localFont({
       style: 'italic',
     },
   ],
-});
-*/
+});*/
+
 const a = {className: ""}
 
 export const inter_thin = a
