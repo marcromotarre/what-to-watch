@@ -7,11 +7,10 @@ export const filter_by_num_votes = ({
 }: {
   movies: Array<Movie>;
   minimum_num_votes: number;
-  platform: string;
+  platform: keyof Movie;
 }): Array<Movie> => {
-  /* eslint-disable */
-
   return movies.filter((movie: Movie) => {
-    return movie["imdb"].num_votes >= minimum_num_votes;
+    const movie_platform: any = movie[platform];
+    return movie_platform.num_votes >= minimum_num_votes;
   });
 };

@@ -1,6 +1,4 @@
-import IMDB from "@/interfaces/IMDB";
 import Movie from "@/interfaces/Movie";
-import Score from "@/interfaces/Score";
 
 export const filter_by_rating = ({
   movies,
