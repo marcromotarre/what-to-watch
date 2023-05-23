@@ -40,7 +40,7 @@ export default function WidgetCarousel({
     filters = [],
     order = ["popularity", "num_votes", "rating", "year"],
   }) => {
-    const url = `http://localhost:3000/api/movies`;
+    const url = `/api/movies`;
     const { data } = await axios.post(url, { page, limit, filters, order });
     setMovies([...movies, ...data.results]);
     setNext(data.next);
@@ -49,7 +49,6 @@ export default function WidgetCarousel({
   const POSTER_WIDTH = 150;
   return (
     <Box sx={{ backgroundColor: "#3D3D3D" }}>
-      <Typography sx={{ color: "white" }}>{JSON.stringify(movies)}</Typography>
       <Box>
         <Typography
           className={inter_regular.className}
