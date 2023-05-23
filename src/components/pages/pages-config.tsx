@@ -1,7 +1,6 @@
 const pages_config: PagesConfig = {
   "/": {
-    applyMargin: false,
-    showBottomMenu: true,
+    sidePadding: false,
   },
 };
 
@@ -15,11 +14,13 @@ type PagesConfig = {
 };
 
 type PageConfig = {
-  applyMargin?: boolean;
+  sidePadding?: boolean;
   showBottomMenu?: boolean;
+  paddingTop?: boolean;
 };
 
 const DEFAULT_PAGE_CONFIG: PageConfig = {
-  applyMargin: true,
+  sidePadding: true,
   showBottomMenu: true,
+  paddingTop: true,
 };

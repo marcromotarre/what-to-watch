@@ -4,18 +4,11 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { jwtState, userRankingPlatformsState } from "../../states/user-state";
 
 export const FilmaffinitySliderComponent = (slider) => {
-  const jwt = useRecoilValue(jwtState);
-  const [userRankingPlatforms, setUserRankingPlatforms] = useRecoilState(
-    userRankingPlatformsState
-  );
+ 
   return (
     <FilmaffinitySlider
       onChangeCommitted={(e, value) => {
         slider.saveValue({
-          value,
-          jwt,
-          userRankingPlatforms,
-          setUserRankingPlatforms,
         });
       }}
       {...slider}

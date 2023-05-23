@@ -11,22 +11,19 @@ import { BASE_URL } from "../states/user-state";
 
 const RANKING_PLATFORMS = [
   {
-    name: "filmaffinity",
+    name: "FILMAFFINITY",
     appIcon: FILMAFFINITY_APP_ICON,
     minimumRating: 0,
     minimumVotes: 0,
   },
-  { name: "imdb", appIcon: IMDB_APP_ICON },
+  { name: "IMDB", appIcon: IMDB_APP_ICON },
   {
-    name: "rotten_tomatoes",
+    name: "ROTTEN_TOMATOES",
     appIcon: ROTTEN_TOMATOES_APP_ICON,
   },
 ];
 
-export const RANKING_PLATFORMS_SLIDERS = ({
-  userRankingPlatforms,
-  setUserRankingPlatforms,
-}) => {
+export const RANKING_PLATFORMS_SLIDERS = () => {
   return {
     FILMAFFINITY: [
       {
@@ -35,24 +32,23 @@ export const RANKING_PLATFORMS_SLIDERS = ({
         min: 0,
         max: 10,
         step: 0.1,
-        defaultValue:
-          userRankingPlatforms[userRankingPlatforms.ranking_platform]
-            .minimum_rating_value,
-        saveValue: ({
+        defaultValue: 5,
+        /*userRankingPlatforms[userRankingPlatforms.ranking_platform]
+            .minimum_rating_value*/ saveValue: ({
           value,
           jwt,
           setUserRankingPlatforms,
           userRankingPlatforms,
         }) => {
-          const USER_PARAMS_URL = `${BASE_URL}api/user-params`;
-          setUserRankingPlatforms({
+          //const USER_PARAMS_URL = `${BASE_URL}api/user-params`;
+          /*setUserRankingPlatforms({
             ...userRankingPlatforms,
             FILMAFFINITY: {
               ...userRankingPlatforms.FILMAFFINITY,
               minimum_rating_value: value,
             },
-          });
-          axios.post(
+          });*/
+          /*axios.post(
             USER_PARAMS_URL,
             {
               filmaffinityMinimumRatingValue: value,
@@ -62,7 +58,7 @@ export const RANKING_PLATFORMS_SLIDERS = ({
                 Authorization: `Bearer ${jwt}`,
               },
             }
-          );
+          );*/
         },
         valueLabelFormat: (value) => {
           return value;
@@ -111,15 +107,13 @@ export const RANKING_PLATFORMS_SLIDERS = ({
         min: 0,
         max: 10000,
         step: null,
-        defaultValue:
-          userRankingPlatforms[userRankingPlatforms.ranking_platform]
-            .minimum_votes_value,
-
-        valueLabelFormat: (value) => {
+        defaultValue: 5,
+        /*userRankingPlatforms[userRankingPlatforms.ranking_platform]
+            .minimum_votes_value*/ valueLabelFormat: (value) => {
           return value;
         },
         saveValue: ({ value, jwt }) => {
-          const USER_PARAMS_URL = `${BASE_URL}api/user-params`;
+          /*const USER_PARAMS_URL = `${BASE_URL}api/user-params`;
           setUserRankingPlatforms({
             ...userRankingPlatforms,
             FILMAFFINITY: {
@@ -137,7 +131,7 @@ export const RANKING_PLATFORMS_SLIDERS = ({
                 Authorization: `Bearer ${jwt}`,
               },
             }
-          );
+          );*/
         },
         marks: [
           {

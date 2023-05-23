@@ -1,11 +1,13 @@
-import RANKING_PLATFORMS, { RANKING_PLATFORMS_SLIDERS } from "@/data/ranking-platforms";
+import RANKING_PLATFORMS, {
+  RANKING_PLATFORMS_SLIDERS,
+} from "@/data/ranking-platforms";
 import { Box, CardMedia } from "@mui/material";
 import { Widget } from "@/interfaces/Widget";
 import ConfigSection from "../config-section";
 import { set_widget_ranking_platform } from "@/utils/widget/configuration";
 import { useRecoilState } from "recoil";
 import { userWidgetsState } from "@/states/user-state";
-
+import ConfigSectionSlider from "@/components/sections/config-section-slider";
 const RankingPlatformSection = ({ widget_id }: ComponentProps) => {
   const [userWidgets, setUserWidgets] = useRecoilState(userWidgetsState);
   const handleRankingPlatformClick = (ranking_platform: string) => {
@@ -18,10 +20,15 @@ const RankingPlatformSection = ({ widget_id }: ComponentProps) => {
   };
 
   const widget = userWidgets[widget_id];
+const rankingPlatformsSliders: any = RANKING_PLATFORMS_SLIDERS()
   return (
-    <ConfigSection title={"¿Cual es tu motor de puntuación favorito?"}
-    subtitle={"Usaremos la plataforma que elijas para filtrar y ordenar por puntuación"}>
-      <Box>
+    <ConfigSection
+      title={"¿Cual es tu motor de puntuación favorito?"}
+      subtitle={
+        "Usaremos la plataforma que elijas para filtrar y ordenar por puntuación"
+      }
+    >
+      <Box sx={{ display: "grid", rowGap: 3}}>
         <Box
           sx={{
             display: "flex",
@@ -64,13 +71,12 @@ const RankingPlatformSection = ({ widget_id }: ComponentProps) => {
             ))}
           </Box>
         </Box>
-      </Box>
-          {/*RANKING_PLATFORMS_SLIDERS({
-            userRankingPlatforms,
-            ()=> {},
-          })[userRankingPlatforms.ranking_platform].map((slider, index) => {
+        {rankingPlatformsSliders[widget.data.rating_platform].map(
+          (slider: Function, index: number) => {
             return <ConfigSectionSlider key={index} slider={slider} />;
-          })*/}
+          }
+        )}
+      </Box>
     </ConfigSection>
   );
 };

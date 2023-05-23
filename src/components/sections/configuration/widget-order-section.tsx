@@ -41,7 +41,7 @@ const OrderElementComponent = ({
   );
 };
 
-const WidgetNameSection = ({ widget_id }: ComponentProps) => {
+const WidgetOrderSection = ({ widget_id }: ComponentProps) => {
   // get actual order
   const [userWidgets, setUserWidgets] = useRecoilState(userWidgetsState);
   const order = userWidgets[widget_id]?.data?.order
@@ -84,4 +84,4 @@ type ComponentProps = {
   widget_id: string;
 };
 
-export default WidgetNameSection;
+export default WidgetOrderSection;

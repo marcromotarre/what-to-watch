@@ -17,6 +17,7 @@ export default function PageComponent({ children }: ComponentProps) {
         justifyContent: "center",
         position: "relative",
         flexDirection: "column",
+        paddingTop: page_config.paddingTop ? 7 : 0,
       }}
     >
       <Box
@@ -30,7 +31,7 @@ export default function PageComponent({ children }: ComponentProps) {
       ></Box>
       <Box
         sx={{
-          width: page_config.applyMargin ? "calc(100% - 20px)" : "100%",
+          width: page_config.sidePadding ? "calc(100% - 20px)" : "100%",
           height: "fit-content",
           position: "relative",
         }}

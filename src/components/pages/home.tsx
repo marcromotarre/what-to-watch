@@ -20,7 +20,6 @@ export default function HomePageComponent() {
         display: "grid",
         gridTemplateColumns: "100%",
         rowGap: 4,
-        paddingTop: 7,
       }}
     >
       {widget_keys.map((widget_key: string) => (
