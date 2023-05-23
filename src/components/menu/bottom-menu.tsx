@@ -1,10 +1,25 @@
 import { Box } from "@mui/material";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import { useRouter } from "next/router";
 export default function BottomMenu() {
+  const router = useRouter();
+
+  const go_to_home = () => {
+    if (router.route !== "/") {
+      router.push(`/`);
+    }
+  };
+  
+  const go_to_configuration = () => {
+    if (router.route !== "/widget") {
+      router.push(`/widget`);
+    }
+  };
+
   return (
     <Box
       sx={{
-        height: "60px",
+        height: "40px",
         bottom: "0",
         width: "100%",
         position: "fixed",
@@ -14,20 +29,17 @@ export default function BottomMenu() {
         borderTop: "1px solid black",
         paddingTop: "5px",
         display: "flex",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
+        zIndex: 1000,
       }}
     >
       <HomeRoundedIcon
+        onClick={() => go_to_home()}
         sx={{ height: "30px", width: "auto", color: "#DADADA" }}
       />
-     
+
       <HomeRoundedIcon
-        sx={{ height: "30px", width: "auto", color: "#DADADA" }}
-      />
-      <HomeRoundedIcon
-        sx={{ height: "30px", width: "auto", color: "#DADADA" }}
-      />
-      <HomeRoundedIcon
+        onClick={() => go_to_configuration()}
         sx={{ height: "30px", width: "auto", color: "#DADADA" }}
       />
     </Box>

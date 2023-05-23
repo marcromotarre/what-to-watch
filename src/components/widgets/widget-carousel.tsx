@@ -6,7 +6,6 @@ import MoviePoster from "../movies/movie-poster";
 import Movie from "@/interfaces/Movie";
 import { inter_regular } from "@/fonts/inter";
 
-
 export default function WidgetCarousel({
   name = "Widget Name",
   filters = [],
@@ -50,6 +49,7 @@ export default function WidgetCarousel({
   const POSTER_WIDTH = 150;
   return (
     <Box sx={{ backgroundColor: "#3D3D3D" }}>
+      <Typography sx={{ color: "white" }}>{JSON.stringify(movies)}</Typography>
       <Box>
         <Typography
           className={inter_regular.className}

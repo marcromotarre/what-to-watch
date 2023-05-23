@@ -1,8 +1,12 @@
 import { ReactElement } from "react";
 import { Box } from "@mui/material";
 import BottomMenu from "../menu/bottom-menu";
+import { useRouter } from "next/router";
+import { get_page_config } from "./pages-config";
 
 export default function PageComponent({ children }: ComponentProps) {
+  const router = useRouter();
+  const page_config = get_page_config(router.route);
   return (
     <Box
       sx={{
@@ -12,6 +16,7 @@ export default function PageComponent({ children }: ComponentProps) {
         height: "100%",
         justifyContent: "center",
         position: "relative",
+        flexDirection: "column",
       }}
     >
       <Box
@@ -23,11 +28,17 @@ export default function PageComponent({ children }: ComponentProps) {
           zIndex: -1,
         }}
       ></Box>
-      <Box sx={{ width: "calc(100% - 20px)", height: "fit-content" }}>
+      <Box
+        sx={{
+          width: page_config.applyMargin ? "calc(100% - 20px)" : "100%",
+          height: "fit-content",
+          position: "relative",
+        }}
+      >
         {children}
       </Box>
-      <BottomMenu />
-
+      <Box sx={{ height: "70px", width: "100%", position: "relative" }}></Box>
+      {page_config.showBottomMenu && <BottomMenu />}
     </Box>
   );
 }
