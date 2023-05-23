@@ -41,10 +41,9 @@ const DraggablePlatformCard = ({
 
   return (
     <Card
-      ref={dragDropRef}
       sx={{
         display: "grid",
-        gridTemplateColumns: "20px auto",
+        gridTemplateColumns: "20px auto 120px",
         width: "100%",
         columnGap: 1,
         backgroundColor: "#3D3D3D",
@@ -57,7 +56,11 @@ const DraggablePlatformCard = ({
     >
       <DragIndicatorIcon sx={{ color: "white", opacity: userHas ? 1 : 0.1 }} />
 
-      <Typography sx={{ opacity: userHas ? 1 : 0.1 }} variant="subtitle2">
+      <Typography
+        ref={dragDropRef}
+        sx={{ opacity: userHas ? 1 : 0.1 }}
+        variant="subtitle2"
+      >
         {text}
       </Typography>
     </Card>

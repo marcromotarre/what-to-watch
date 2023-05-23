@@ -64,27 +64,6 @@ export default function WidgetConfiguration() {
       }}
     >
       <ConfigSection
-        title={"¿Que platafotmas tienes?"}
-        subtitle={`Pulsa para activar o desactivar.
-          Arrastra para ordenarlas. La odenación se usa para que sepas de forma rápida en que plataforma puedes ver la pelicula.`}
-      >
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "auto",
-            rowGap: 3,
-            width: "calc(100% - 60px)",
-            marginLeft: "30px",
-          }}
-        >
-          {
-            <DragableList onChange={savePlatformsOrder} elements={platforms}>
-              <DraggablePlatformCard />
-            </DragableList>
-          }
-        </Box>
-      </ConfigSection>
-      <ConfigSection
         title={"Vamos a configurar tus widgets"}
         subtitle={
           "Pulsa para activar o desactivar.\nArrastra para ordenarlas. La odenación se usa para que sepas de forma rápida en que plataforma puedes ver la pelicula."
@@ -96,8 +75,7 @@ export default function WidgetConfiguration() {
               display: "grid",
               gridTemplateColumns: "auto",
               rowGap: 3,
-              width: "calc(100% - 60px)",
-              marginLeft: "30px",
+              width: "calc(100%)",
             }}
           >
             {
@@ -124,6 +102,28 @@ export default function WidgetConfiguration() {
               Crea un nuevo widget
             </Typography>
           </Box>
+        </Box>
+      </ConfigSection>
+      <ConfigSection
+        title={"¿Que platafotmas tienes?"}
+        subtitle={[
+          "Arrastra para ordenarlas. La odenación se usa para que sepas de forma rápida en que plataforma puedes ver la pelicula.",
+          "Pulsa para activar o desactivar.",
+        ]}
+      >
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "auto",
+            rowGap: 3,
+            width: "calc(100%)",
+          }}
+        >
+          {
+            <DragableList onChange={savePlatformsOrder} elements={platforms}>
+              <DraggablePlatformCard />
+            </DragableList>
+          }
         </Box>
       </ConfigSection>
     </Box>

@@ -1,4 +1,9 @@
-import { inter_black, inter_extra_light, inter_light, inter_medium } from "@/fonts/inter";
+import {
+  inter_black,
+  inter_extra_light,
+  inter_light,
+  inter_medium,
+} from "@/fonts/inter";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { ReactNode } from "react";
@@ -18,11 +23,18 @@ export default function ConfigSection({
             {title}
           </Typography>
         )}
-        {subtitle && (
+        {subtitle && !Array.isArray(subtitle) && (
           <Typography className={inter_light.className} variant="body2">
             {subtitle}
           </Typography>
         )}
+        {subtitle &&
+          Array.isArray(subtitle) &&
+          subtitle.map((subtitleText: string, index: number) => (
+            <Typography key={index} className={inter_light.className} variant="body2">
+              {subtitleText}
+            </Typography>
+          ))}
       </Box>
 
       {children && (
@@ -40,9 +52,8 @@ export default function ConfigSection({
   );
 }
 
-
 type ComponentProps = {
   title?: string;
-  subtitle?: string;
+  subtitle?: string | Array<string>;
   children?: ReactNode;
 };

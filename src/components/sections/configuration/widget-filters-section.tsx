@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { userWidgetsState } from "@/states/user-state";
 import { Check } from "@/components/common/check";
+import { Option } from "@/components/common/option";
 const WidgetFilterSection = ({
   name,
   options,
@@ -82,7 +83,7 @@ const WidgetFilterSection = ({
           <Box></Box>
           <Box sx={{ display: "grid", rowGap: 1, paddingLeft: 1 }}>
             {options.map((option: any, index: number) => (
-              <Check
+              <Option
                 key={index}
                 onClick={() => {
                   option.click({
