@@ -48,7 +48,6 @@ export default function WidgetConfiguration() {
     const transformed_order = platforms_order.map(({ data }: any) => data.id);
     if (JSON.stringify(transformed_order) !== JSON.stringify(current_order)) {
       set_platforms_order({
-        platforms: userPlatforms,
         platforms_order: transformed_order,
       });
     }
