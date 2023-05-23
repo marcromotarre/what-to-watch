@@ -1,5 +1,6 @@
-{
-  "9e79ae94-46f3-45c0-9b9b-879aff2b618a": {
+[
+  {
+    "id": "9e79ae94-46f3-45c0-9b9b-879aff2b618a",
     "type": "carousel",
     "data": {
       "name": "Peliculas estrenadas este año",
@@ -7,12 +8,12 @@
         "chip_name": "BASIC_CHIP_IMDB",
         "poster_type": "RECTANGULAR_WITH_WHITE_BORDER"
       },
-      "rating_platform": "imdb",
+      "rating_platform": "FILMAFFINITY",
       "filters": [
         {
           "type": "num_votes",
           "data": {
-            "platform": "filmaffinity",
+            "platform": "FILMAFFINITY",
             "minimum_num_votes": 1
           }
         },
@@ -27,7 +28,8 @@
       "order": ["year", "popularity", "num_votes", "rating"]
     }
   },
-  "f4c537f3-9974-4ee3-aa9b-ce2c620434fc": {
+  {
+    "id": "f4c537f3-9974-4ee3-aa9b-ce2c620434fc",
     "type": "carousel",
     "data": {
       "name": "Peliculas estrenadas el año pasado",
@@ -35,19 +37,19 @@
         "chip_name": "SMALL_CHIP_FILMAFFINITY_WITH_PLATFORM",
         "poster_type": "ROUNDED"
       },
-      "rating_platform": "filmaffinity",
+      "rating_platform": "FILMAFFINITY",
       "filters": [
         {
           "type": "rating",
           "data": {
-            "platform": "filmaffinity",
+            "platform": "FILMAFFINITY",
             "minimum_rating": 5
           }
         },
         {
           "type": "num_votes",
           "data": {
-            "platform": "filmaffinity",
+            "platform": "FILMAFFINITY",
             "minimum_num_votes": 1000
           }
         },
@@ -62,11 +64,12 @@
       "order": ["popularity", "num_votes", "rating", "year"]
     }
   },
-  "befef31d-b4eb-46fc-8ba6-9356685e525a": {
+  {
+    "id": "befef31d-b4eb-46fc-8ba6-9356685e525a",
     "type": "carousel",
     "data": {
       "name": "Peliculas de Comedia",
-      "rating_platform": "filmaffinity",
+      "rating_platform": "FILMAFFINITY",
       "movie_poster": {
         "chip_name": "NO_CHIP",
         "poster_type": "ROUNDED"
@@ -79,14 +82,14 @@
         {
           "type": "rating",
           "data": {
-            "platform": "filmaffinity",
+            "platform": "FILMAFFINITY",
             "minimum_rating": 5
           }
         },
         {
           "type": "num_votes",
           "data": {
-            "platform": "filmaffinity",
+            "platform": "FILMAFFINITY",
             "minimum_num_votes": 1000
           }
         }
@@ -94,7 +97,8 @@
       "order": ["popularity", "num_votes", "rating", "year"]
     }
   },
-  "f12f0c74-3589-4bae-ae6a-9c7c51229c40": {
+  {
+    "id": "f12f0c74-3589-4bae-ae6a-9c7c51229c40",
     "type": "carousel",
     "data": {
       "name": "Peliculas de Animación",
@@ -102,7 +106,7 @@
         "chip_name": "BASIC_CHIP_FILMAFFINITY",
         "poster_type": "RECTANGULAR_WITH_WHITE_BORDER"
       },
-      "rating_platform": "filmaffinity",
+      "rating_platform": "FILMAFFINITY",
       "filters": [
         {
           "type": "genres",
@@ -111,14 +115,14 @@
         {
           "type": "rating",
           "data": {
-            "platform": "filmaffinity",
+            "platform": "FILMAFFINITY",
             "minimum_rating": 5
           }
         },
         {
           "type": "num_votes",
           "data": {
-            "platform": "filmaffinity",
+            "platform": "FILMAFFINITY",
             "minimum_num_votes": 1000
           }
         }
@@ -126,7 +130,8 @@
       "order": ["popularity", "num_votes", "rating", "year"]
     }
   },
-  "3042f2e1-5d1e-4b77-a75a-1199eb7b5392": {
+  {
+    "id": "3042f2e1-5d1e-4b77-a75a-1199eb7b5392",
     "type": "carousel",
     "data": {
       "name": "Peliculas de Terror",
@@ -134,7 +139,7 @@
         "chip_name": "BASIC_CHIP_FILMAFFINITY",
         "poster_type": "RECTANGULAR_WITH_WHITE_BORDER"
       },
-      "rating_platform": "filmaffinity",
+      "rating_platform": "FILMAFFINITY",
       "filters": [
         {
           "type": "genres",
@@ -143,7 +148,7 @@
         {
           "type": "rating",
           "data": {
-            "platform": "filmaffinity",
+            "platform": "FILMAFFINITY",
             "minimum_rating": 3.8
           }
         }
@@ -151,7 +156,8 @@
       "order": ["popularity", "num_votes", "rating", "year"]
     }
   },
-  "e9dbacf4-3e4d-47bd-9c2a-0aed10475a74": {
+  {
+    "id": "e9dbacf4-3e4d-47bd-9c2a-0aed10475a74",
     "type": "carousel",
     "data": {
       "name": "Peliculas de Leonardo DiCaprio",
@@ -159,7 +165,7 @@
         "chip_name": "BASIC_CHIP_FILMAFFINITY",
         "poster_type": "RECTANGULAR_WITH_WHITE_BORDER"
       },
-      "rating_platform": "filmaffinity",
+      "rating_platform": "FILMAFFINITY",
       "filters": [
         {
           "type": "cast",
@@ -172,4 +178,4 @@
       "order": ["popularity", "num_votes", "rating", "year"]
     }
   }
-}
+]

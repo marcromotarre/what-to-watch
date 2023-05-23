@@ -54,12 +54,6 @@ export const set_platforms_order = ({
     });
     ordered_platforms.push(platforms[platform_index]);
   });
-
-  console.log(
-    platforms.length,
-    platforms_order.length,
-    ordered_platforms.length
-  );
   save_platforms_to_local_storage(ordered_platforms);
   return ordered_platforms;
 };

@@ -3,19 +3,22 @@ import ConfigSection from "../config-section";
 import { inter_medium } from "@/fonts/inter";
 import { useRecoilState } from "recoil";
 import { userWidgetsState } from "@/states/user-state";
-import { set_widget_name } from "@/utils/widget/configuration";
+import {
+  get_widget_index,
+  set_widget_name,
+} from "@/utils/widget/configuration";
+import { Widget } from "@/interfaces/Widget";
 
-const WidgetNameSection = ({ widget_id }) => {
-  const [userWidgets, setUserWidgets] = useRecoilState(userWidgetsState);
-  const name = userWidgets[widget_id]?.data?.name;
-
-  const updateName = (value) => {
+const WidgetNameSection = ({ widget_id }: ComponentProps) => {
+  const [widgets, setWidgets] = useRecoilState(userWidgetsState);
+  const widget: Widget = widgets[get_widget_index({ widgets, widget_id })]; //userWidgets[widget_id]?.data?.name;
+  const name = widget.data.name;
+  const updateName = (value: string) => {
     const modified_widgets = set_widget_name({
-      widgets: userWidgets,
       widget_id,
       widget_name: value,
     });
-    setUserWidgets(modified_widgets);
+    setWidgets(modified_widgets);
   };
   return (
     <ConfigSection
@@ -33,7 +36,6 @@ const WidgetNameSection = ({ widget_id }) => {
       >
         <Input
           id="input"
-          className={inter_medium.className}
           onChange={(event) => updateName(event.target.value)}
           sx={{
             padding: 1,
@@ -50,3 +52,7 @@ const WidgetNameSection = ({ widget_id }) => {
 };
 
 export default WidgetNameSection;
+
+type ComponentProps = {
+  widget_id: string;
+};

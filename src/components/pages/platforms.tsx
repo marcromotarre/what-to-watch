@@ -4,7 +4,6 @@ export default function PlatformsPageComponent() {
   return (
     <>
       <PlatformsUserSelection />
-      <PlatformsUserSelection />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { Box, CardMedia } from "@mui/material";
 
-const RankingPlatformList = () => {
-  const ranking_platforms = ["filmaffinity", "imdb", "rotten-tomatoes"];
+const RatingPlatformList = () => {
+  const ranting_platforms = ["filmaffinity", "imdb", "rotten-tomatoes"];
   return (
     <Box>
       {/* ranking_platforms.map((ranking_platform: string) => (
@@ -15,4 +15,4 @@ const RankingPlatformList = () => {
   );
 };
 
-export default RankingPlatformList;
+export default RatingPlatformList;

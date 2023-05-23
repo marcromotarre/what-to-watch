@@ -1,8 +1,7 @@
-export type Widgets = {
-  [key: string]: Widget
-}
+export type Widgets = Array<Widget>;
 
 export type Widget = {
+  id: string;
   type: string;
   data: WidgetData;
 };

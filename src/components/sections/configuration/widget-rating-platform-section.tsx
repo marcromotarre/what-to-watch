@@ -1,26 +1,38 @@
-import RANKING_PLATFORMS, {
-  RANKING_PLATFORMS_SLIDERS,
-} from "@/data/ranking-platforms";
+import RATING_PLATFORMS, {
+  RATING_PLATFORMS_SLIDERS,
+} from "@/data/rating-platforms";
 import { Box, CardMedia } from "@mui/material";
 import { Widget } from "@/interfaces/Widget";
 import ConfigSection from "../config-section";
-import { set_widget_ranking_platform } from "@/utils/widget/configuration";
+import {
+  get_widget_by_id,
+  get_widget_filter,
+  set_widget_ranting_platform,
+} from "@/utils/widget/configuration";
 import { useRecoilState } from "recoil";
 import { userWidgetsState } from "@/states/user-state";
 import ConfigSectionSlider from "@/components/sections/config-section-slider";
-const RankingPlatformSection = ({ widget_id }: ComponentProps) => {
-  const [userWidgets, setUserWidgets] = useRecoilState(userWidgetsState);
-  const handleRankingPlatformClick = (ranking_platform: string) => {
-    const modified_widgets = set_widget_ranking_platform({
-      widgets: userWidgets,
+
+const WidgetRatingPlatformSection = ({ widget_id }: ComponentProps) => {
+  const [widgets, setWidgets] = useRecoilState(userWidgetsState);
+
+  console.log("widget", get_widget_by_id({ widget_id }));
+  const handleRankingPlatformClick = (rating_platform: string) => {
+    const modified_widgets = set_widget_ranting_platform({
       widget_id,
-      ranking_platform,
+      rating_platform,
     });
-    setUserWidgets(modified_widgets);
+    setWidgets(modified_widgets);
   };
 
-  const widget = userWidgets[widget_id];
-const rankingPlatformsSliders: any = RANKING_PLATFORMS_SLIDERS()
+  const widget = get_widget_by_id({ widgets, widget_id });
+  const widget_rating = get_widget_filter({ widget_id, filter_type: "rating" })
+    ?.data.minimum_rating;
+
+  const rantingPlatformsSliders: any = RATING_PLATFORMS_SLIDERS({
+    widget_id,
+    default_values: { default_rating: widget_rating },
+  });
   return (
     <ConfigSection
       title={"¿Cual es tu motor de puntuación favorito?"}
@@ -28,7 +40,7 @@ const rankingPlatformsSliders: any = RANKING_PLATFORMS_SLIDERS()
         "Usaremos la plataforma que elijas para filtrar y ordenar por puntuación"
       }
     >
-      <Box sx={{ display: "grid", rowGap: 3}}>
+      <Box sx={{ display: "grid", rowGap: 3 }}>
         <Box
           sx={{
             display: "flex",
@@ -46,32 +58,32 @@ const rankingPlatformsSliders: any = RANKING_PLATFORMS_SLIDERS()
               width: "80%",
             }}
           >
-            {RANKING_PLATFORMS.map((rankingPlantform, index) => (
+            {RATING_PLATFORMS.map((rantingPlantform, index) => (
               <CardMedia
-                key={rankingPlantform.name}
+                key={rantingPlantform.name}
                 component="img"
                 onClick={() => {
-                  handleRankingPlatformClick(rankingPlantform.name);
+                  handleRankingPlatformClick(rantingPlantform.name);
                 }}
                 sx={{
                   width: "100%",
                   borderRadius: "15px",
                   boxShadow:
-                    widget.data.rating_platform === rankingPlantform.name
+                    widget.data.rating_platform === rantingPlantform.name
                       ? "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
                       : "",
                   opacity:
-                    widget.data.rating_platform === rankingPlantform.name
+                    widget.data.rating_platform === rantingPlantform.name
                       ? 1
                       : 0.1,
                 }}
-                image={rankingPlantform.appIcon.src}
-                alt={rankingPlantform.name}
+                image={rantingPlantform.appIcon.src}
+                alt={rantingPlantform.name}
               ></CardMedia>
             ))}
           </Box>
         </Box>
-        {rankingPlatformsSliders[widget.data.rating_platform].map(
+        {rantingPlatformsSliders[widget.data.rating_platform].map(
           (slider: Function, index: number) => {
             return <ConfigSectionSlider key={index} slider={slider} />;
           }
@@ -85,4 +97,4 @@ type ComponentProps = {
   widget_id: string;
 };
 
-export default RankingPlatformSection;
+export default WidgetRatingPlatformSection;

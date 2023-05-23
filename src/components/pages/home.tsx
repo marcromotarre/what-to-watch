@@ -1,18 +1,17 @@
 import WidgetCarousel from "@/components/widgets/widget-carousel";
+import { Widget } from "@/interfaces/Widget";
 import { userWidgetsState } from "@/states/user-state";
 import { Box } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 
 export default function HomePageComponent() {
-  const [userWidgets, setUserWidgets] = useRecoilState(userWidgetsState);
+  const userWidgets = useRecoilValue(userWidgetsState);
   const [widgets, setWidgets] = useState([]);
 
   useEffect(() => {
-    setWidgets(userWidgets)
+    setWidgets(userWidgets);
   }, [userWidgets]);
-
-  const widget_keys = Object.keys(widgets);
   return (
     <Box
       sx={{
@@ -22,8 +21,8 @@ export default function HomePageComponent() {
         rowGap: 4,
       }}
     >
-      {widget_keys.map((widget_key: string) => (
-        <WidgetCarousel key={widget_key} {...userWidgets[widget_key].data} />
+      {widgets.map((widget: Widget) => (
+        <WidgetCarousel key={widget.id} {...widget.data} />
       ))}
     </Box>
   );

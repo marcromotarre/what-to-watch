@@ -1,3 +1,4 @@
+import { get_widget_filter, set_widget_filter } from "@/utils/widget/configuration";
 import FILMAFFINITY_APP_ICON from "../../src/images/ranking-platforms/filmaffinity/filmaffinity-app-icon.png";
 import IMDB_APP_ICON from "../../src/images/ranking-platforms/imdb/imdb-app-icon.png";
 import ROTTEN_TOMATOES_APP_ICON from "../../src/images/ranking-platforms/rotten-tomatoes/rotten-tomatoes-app-icon.png";
@@ -9,21 +10,28 @@ import ImdbSlider, {
 } from "../components/sliders/imdb-slider";
 import { BASE_URL } from "../states/user-state";
 
-const RANKING_PLATFORMS = [
+const FILMAFFINITY = "FILMAFFINITY"
+const IMDB = "IMDB"
+const ROTTEN_TOMATOES = "ROTTEN_TOMATOES"
+
+const RATING_PLATFORMS = [
   {
-    name: "FILMAFFINITY",
+    name: FILMAFFINITY,
     appIcon: FILMAFFINITY_APP_ICON,
     minimumRating: 0,
     minimumVotes: 0,
   },
-  { name: "IMDB", appIcon: IMDB_APP_ICON },
+  { name: IMDB, appIcon: IMDB_APP_ICON },
   {
-    name: "ROTTEN_TOMATOES",
+    name: ROTTEN_TOMATOES,
     appIcon: ROTTEN_TOMATOES_APP_ICON,
   },
 ];
 
-export const RANKING_PLATFORMS_SLIDERS = () => {
+
+
+
+export const RATING_PLATFORMS_SLIDERS = ({ widget_id, default_values = {default_rating: default_rating} }) => {
   return {
     FILMAFFINITY: [
       {
@@ -32,33 +40,16 @@ export const RANKING_PLATFORMS_SLIDERS = () => {
         min: 0,
         max: 10,
         step: 0.1,
-        defaultValue: 5,
-        /*userRankingPlatforms[userRankingPlatforms.ranking_platform]
-            .minimum_rating_value*/ saveValue: ({
-          value,
-          jwt,
-          setUserRankingPlatforms,
-          userRankingPlatforms,
-        }) => {
-          //const USER_PARAMS_URL = `${BASE_URL}api/user-params`;
-          /*setUserRankingPlatforms({
-            ...userRankingPlatforms,
-            FILMAFFINITY: {
-              ...userRankingPlatforms.FILMAFFINITY,
-              minimum_rating_value: value,
+        defaultValue: default_values.default_rating? default_values.default_rating : 5,
+        saveValue: (value) => {
+          set_widget_filter({
+            widget_id,
+            filter_type: "rating",
+            filter_data: {
+              platform: FILMAFFINITY,
+              minimum_rating: value,
             },
-          });*/
-          /*axios.post(
-            USER_PARAMS_URL,
-            {
-              filmaffinityMinimumRatingValue: value,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${jwt}`,
-              },
-            }
-          );*/
+          });
         },
         valueLabelFormat: (value) => {
           return value;
@@ -108,11 +99,11 @@ export const RANKING_PLATFORMS_SLIDERS = () => {
         max: 10000,
         step: null,
         defaultValue: 5,
-        /*userRankingPlatforms[userRankingPlatforms.ranking_platform]
-            .minimum_votes_value*/ valueLabelFormat: (value) => {
+        valueLabelFormat: (value) => {
           return value;
         },
-        saveValue: ({ value, jwt }) => {
+        saveValue: (value) => {
+          console.log("change value", widget_id, value);
           /*const USER_PARAMS_URL = `${BASE_URL}api/user-params`;
           setUserRankingPlatforms({
             ...userRankingPlatforms,
@@ -302,4 +293,4 @@ export const RANKING_PLATFORMS_SLIDERS = () => {
     ROTTEN_TOMATOES: [],
   };
 };
-export default RANKING_PLATFORMS;
+export default RATING_PLATFORMS;
