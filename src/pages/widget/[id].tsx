@@ -1,11 +1,6 @@
-import { Box, CardMedia, Input, Typography } from "@mui/material";
-import ConfigSection from "../../components/sections/config-section";
-import RANKING_PLATFORMS, {
-  RANKING_PLATFORMS_SLIDERS,
-} from "../../data/ranking-platforms";
+import { Box } from "@mui/material";
 import { userWidgetsState } from "../../states/user-state";
 import { useRecoilValue } from "recoil";
-import RankingPlatformList from "@/components/platforms/ranking-platform-list";
 import RankingPlatformSection from "@/components/sections/configuration/ranking-platform-section";
 import WidgetNameSection from "@/components/sections/configuration/widget-name-section";
 import WidgetOrderSection from "@/components/sections/configuration/widget-order-section";
@@ -17,7 +12,6 @@ export default function WidgetConfiguration() {
   const router = useRouter();
   const widget_id = router.query?.id ? router.query.id.toString() : "";
   const userWidgets = useRecoilValue(userWidgetsState);
-  const widget_keys = Object.keys(userWidgets);
 
   const is_widget_created = userWidgets.hasOwnProperty(widget_id);
   return (

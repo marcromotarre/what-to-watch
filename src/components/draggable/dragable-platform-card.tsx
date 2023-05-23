@@ -22,22 +22,17 @@ const DraggablePlatformCard = ({
   const [userHas, setUserHas] = useState(has);
   const extraStylesOnDragging = isDragging
     ? { boxShadow: "0px 0px 42px -3px rgba(0,0,0,0.77);" }
-    : { boxShadow: "0" };
+    : { boxShadow: "rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;" };
 
   const clickOnPlatform = () => {
     const platforms = click_on_platform({
-      platforms: userPlatforms,
       platform_id: id,
     });
     const index = get_platform_index({
-      platforms: userPlatforms,
       platform_id: id,
     });
     setUserHas(platforms[index].has);
-    // setUserPlatforms(modified_platforms);
   };
-
-  // change order
 
   return (
     <Card
@@ -47,7 +42,7 @@ const DraggablePlatformCard = ({
         width: "100%",
         columnGap: 1,
         backgroundColor: "#3D3D3D",
-        padding: 1,
+        padding: 1.5,
         borderRadius: "5px",
         alignItems: "center",
         ...extraStylesOnDragging,

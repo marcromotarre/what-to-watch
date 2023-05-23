@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/utils/order/__tests__/order-by-popularity.test.js", "src/data/posters.js", "src/pages/test_api/index.js", "src/pages/movies/index.js", "src/components/chips/chips.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/utils/order/__tests__/order-by-popularity.test.js", "src/data/posters.js", "src/pages/test_api/index.js", "src/pages/movies/index.js", "src/components/chips/chips.js", "src/pages/platforms"],
   "exclude": ["node_modules"]
 }
