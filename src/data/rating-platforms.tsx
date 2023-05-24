@@ -1,18 +1,14 @@
-import { get_widget_filter, set_widget_filter } from "@/utils/widget/configuration";
+import { set_widget_filter } from "@/utils/widget/configuration";
 import FILMAFFINITY_APP_ICON from "../../src/images/ranking-platforms/filmaffinity/filmaffinity-app-icon.png";
 import IMDB_APP_ICON from "../../src/images/ranking-platforms/imdb/imdb-app-icon.png";
 import ROTTEN_TOMATOES_APP_ICON from "../../src/images/ranking-platforms/rotten-tomatoes/rotten-tomatoes-app-icon.png";
-import FilmaffinitySlider, {
-  FilmaffinitySliderComponent,
-} from "../components/sliders/filmaffinity-slider";
-import ImdbSlider, {
-  ImdbSliderComponent,
-} from "../components/sliders/imdb-slider";
-import { BASE_URL } from "../states/user-state";
+import { FilmaffinitySliderComponent } from "../components/sliders/filmaffinity-slider";
+import { ImdbSliderComponent } from "../components/sliders/imdb-slider";
+import _default from "immutability-helper";
 
-const FILMAFFINITY = "FILMAFFINITY"
-const IMDB = "IMDB"
-const ROTTEN_TOMATOES = "ROTTEN_TOMATOES"
+const FILMAFFINITY = "FILMAFFINITY";
+const IMDB = "IMDB";
+const ROTTEN_TOMATOES = "ROTTEN_TOMATOES";
 
 const RATING_PLATFORMS = [
   {
@@ -28,20 +24,38 @@ const RATING_PLATFORMS = [
   },
 ];
 
+type SlidersDefaultParams = {
+  filmaffinity_default_rating?: number;
+  imdb_default_rating?: number;
+  filmaffinity_default_num_vots?: number;
+  imdb_default_num_vots?: number;
+};
 
+const SLIDER_DEFAULT_PARAMS = {
+  filmaffinity_default_rating: 5,
+  imdb_default_rating: 5,
+  filmaffinity_default_num_vots: 1000,
+  imdb_default_num_vots: 1000,
+};
 
-
-export const RATING_PLATFORMS_SLIDERS = ({ widget_id, default_values = {default_rating: default_rating} }) => {
+export const RATING_PLATFORMS_SLIDERS = ({
+  widget_id,
+  default_params,
+}: {
+  widget_id: string;
+  default_params: SlidersDefaultParams;
+}) => {
+  const _default_params = { ...SLIDER_DEFAULT_PARAMS, ...default_params };
   return {
     FILMAFFINITY: [
       {
-        component: (slider) => FilmaffinitySliderComponent(slider),
+        component: (slider: any) => FilmaffinitySliderComponent(slider),
         subtitle: "No quiero ver peliculas que tengan menos de una nota de ...",
         min: 0,
         max: 10,
         step: 0.1,
-        defaultValue: default_values.default_rating? default_values.default_rating : 5,
-        saveValue: (value) => {
+        defaultValue: _default_params.filmaffinity_default_rating,
+        saveValue: (value: number) => {
           set_widget_filter({
             widget_id,
             filter_type: "rating",
@@ -51,7 +65,7 @@ export const RATING_PLATFORMS_SLIDERS = ({ widget_id, default_values = {default_
             },
           });
         },
-        valueLabelFormat: (value) => {
+        valueLabelFormat: (value: number) => {
           return value;
         },
         marks: [
@@ -91,38 +105,26 @@ export const RATING_PLATFORMS_SLIDERS = ({ widget_id, default_values = {default_
         ],
       },
       {
-        component: (slider) => FilmaffinitySliderComponent(slider),
+        component: (slider: any) => FilmaffinitySliderComponent(slider),
         subtitle:
           "No quiero ver peliculas que tengan menos de este numero de votos ...",
         step: 100,
         min: 0,
         max: 10000,
         step: null,
-        defaultValue: 5,
-        valueLabelFormat: (value) => {
+        defaultValue: _default_params.filmaffinity_default_num_vots,
+        valueLabelFormat: (value: number) => {
           return value;
         },
-        saveValue: (value) => {
-          console.log("change value", widget_id, value);
-          /*const USER_PARAMS_URL = `${BASE_URL}api/user-params`;
-          setUserRankingPlatforms({
-            ...userRankingPlatforms,
-            FILMAFFINITY: {
-              ...userRankingPlatforms.FILMAFFINITY,
-              minimum_votes_value: value,
+        saveValue: (value: number) => {
+          set_widget_filter({
+            widget_id,
+            filter_type: "num_votes",
+            filter_data: {
+              platform: FILMAFFINITY,
+              minimum_rating: value,
             },
           });
-          axios.post(
-            USER_PARAMS_URL,
-            {
-              filmaffinityMinimumVotesValue: value,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${jwt}`,
-              },
-            }
-          );*/
         },
         marks: [
           {
@@ -187,14 +189,24 @@ export const RATING_PLATFORMS_SLIDERS = ({ widget_id, default_values = {default_
     ],
     IMDB: [
       {
-        component: (slider) => ImdbSliderComponent(slider),
+        component: (slider: any) => ImdbSliderComponent(slider),
         subtitle: "No quiero ver peliculas que tengan menos de una nota de ...",
         min: 0,
         max: 10,
         step: 0.1,
-        defaultValue: 0,
-        valueLabelFormat: (value) => {
+        defaultValue: _default_params.imdb_default_rating,
+        valueLabelFormat: (value: number) => {
           return value;
+        },
+        saveValue: (value: number) => {
+          set_widget_filter({
+            widget_id,
+            filter_type: "rating",
+            filter_data: {
+              platform: IMDB,
+              minimum_rating: value,
+            },
+          });
         },
         marks: [
           {
@@ -233,15 +245,15 @@ export const RATING_PLATFORMS_SLIDERS = ({ widget_id, default_values = {default_
         ],
       },
       {
-        component: (slider) => ImdbSliderComponent(slider),
+        component: (slider: any) => ImdbSliderComponent(slider),
         subtitle:
           "No quiero ver peliculas que tengan menos de este numero de votos ...",
         step: 100,
         min: 0,
         max: 10000,
         step: null,
-        defaultValue: 0,
-        valueLabelFormat: (value) => {
+        defaultValue: _default_params.imdb_default_num_vots,
+        valueLabelFormat: (value: number) => {
           return value;
         },
         marks: [

@@ -16,7 +16,6 @@ import ConfigSectionSlider from "@/components/sections/config-section-slider";
 const WidgetRatingPlatformSection = ({ widget_id }: ComponentProps) => {
   const [widgets, setWidgets] = useRecoilState(userWidgetsState);
 
-  console.log("widget", get_widget_by_id({ widget_id }));
   const handleRankingPlatformClick = (rating_platform: string) => {
     const modified_widgets = set_widget_ranting_platform({
       widget_id,
@@ -31,7 +30,7 @@ const WidgetRatingPlatformSection = ({ widget_id }: ComponentProps) => {
 
   const rantingPlatformsSliders: any = RATING_PLATFORMS_SLIDERS({
     widget_id,
-    default_values: { default_rating: widget_rating },
+    default_params: { default_rating: widget_rating },
   });
   return (
     <ConfigSection
