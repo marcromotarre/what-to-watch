@@ -11,10 +11,10 @@ export default interface Movie {
   genres: Array<number>;
   cast: Array<number>;
   directors: Array<number>;
-  imdb: IMDB;
-  filmaffinity: Score;
+  IMDB: IMDB;
+  FILMAFFINITY: Score;
   platforms: Array<string>;
-  tmdb: TMDB;
+  TMDB: TMDB;
   release_date: ReleaseDate;
 }
 

@@ -61,7 +61,7 @@ export default function handler(req: any, res: any) {
 const ORDER_FUNCTIONS: { [k: string]: any } = {
   popularity: order_by_popularity,
   rating: order_by_rating,
-  num_votes: order_by_num_votes, //order_by_num_votes,
+  num_votes: order_by_num_votes,
   year: order_by_year,
 };
 

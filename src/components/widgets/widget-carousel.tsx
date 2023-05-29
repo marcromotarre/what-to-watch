@@ -40,7 +40,7 @@ export default function WidgetCarousel({
     filters = [],
     order = ["popularity", "num_votes", "rating", "year"],
   }) => {
-    const url = `/api/movies`;
+    const url = `api/movies`;
     const { data } = await axios.post(url, { page, limit, filters, order });
     setMovies([...movies, ...data.results]);
     setNext(data.next);

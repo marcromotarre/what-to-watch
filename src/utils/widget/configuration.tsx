@@ -102,10 +102,12 @@ export const set_widget_filter = ({
   widget_id,
   filter_type,
   filter_data,
+  update = false
 }: {
   widget_id: string;
   filter_type: string;
   filter_data: any;
+  update?: boolean
 }) => {
   const widgets = get_widgets();
   const widget_index = get_widget_index({ widget_id });
@@ -118,7 +120,11 @@ export const set_widget_filter = ({
       data: filter_data,
     });
   } else {
-    filter.data = filter_data;
+    if (update) {
+      filter.data = { ...filter.data, ...filter_data }
+    } else {
+      filter.data = filter_data;
+    }
   }
   save_widgets_to_local_storage(widgets);
   return widgets;

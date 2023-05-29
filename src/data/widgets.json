@@ -11,10 +11,11 @@
       "rating_platform": "FILMAFFINITY",
       "filters": [
         {
-          "type": "num_votes",
+          "type": "rating",
           "data": {
             "platform": "FILMAFFINITY",
-            "minimum_num_votes": 1
+            "imdb_minimum_rating": 8,
+            "filmaffinity_minimum_rating": 7
           }
         },
         {
@@ -40,20 +41,6 @@
       "rating_platform": "FILMAFFINITY",
       "filters": [
         {
-          "type": "rating",
-          "data": {
-            "platform": "FILMAFFINITY",
-            "minimum_rating": 5
-          }
-        },
-        {
-          "type": "num_votes",
-          "data": {
-            "platform": "FILMAFFINITY",
-            "minimum_num_votes": 1000
-          }
-        },
-        {
           "type": "year",
           "data": {
             "year_init": 1,
@@ -78,20 +65,6 @@
         {
           "type": "genres",
           "data": { "genres": [35], "filter_type": "SOME" }
-        },
-        {
-          "type": "rating",
-          "data": {
-            "platform": "FILMAFFINITY",
-            "minimum_rating": 5
-          }
-        },
-        {
-          "type": "num_votes",
-          "data": {
-            "platform": "FILMAFFINITY",
-            "minimum_num_votes": 1000
-          }
         }
       ],
       "order": ["popularity", "num_votes", "rating", "year"]
@@ -111,20 +84,6 @@
         {
           "type": "genres",
           "data": { "genres": [16, 18], "filter_type": "SOME" }
-        },
-        {
-          "type": "rating",
-          "data": {
-            "platform": "FILMAFFINITY",
-            "minimum_rating": 5
-          }
-        },
-        {
-          "type": "num_votes",
-          "data": {
-            "platform": "FILMAFFINITY",
-            "minimum_num_votes": 1000
-          }
         }
       ],
       "order": ["popularity", "num_votes", "rating", "year"]
@@ -144,13 +103,6 @@
         {
           "type": "genres",
           "data": { "genres": [27], "filter_type": "SOME" }
-        },
-        {
-          "type": "rating",
-          "data": {
-            "platform": "FILMAFFINITY",
-            "minimum_rating": 3.8
-          }
         }
       ],
       "order": ["popularity", "num_votes", "rating", "year"]

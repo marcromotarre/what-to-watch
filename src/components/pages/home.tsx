@@ -2,6 +2,7 @@ import WidgetCarousel from "@/components/widgets/widget-carousel";
 import { Widget } from "@/interfaces/Widget";
 import { userWidgetsState } from "@/states/user-state";
 import { Box } from "@mui/material";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 
@@ -11,7 +12,13 @@ export default function HomePageComponent() {
 
   useEffect(() => {
     setWidgets(userWidgets);
+    a()
   }, [userWidgets]);
+
+  const a = async () => {
+    const data = await axios.post("api/hello");
+    console.log(data)
+  }
   return (
     <Box
       sx={{

@@ -24,28 +24,30 @@ const RATING_PLATFORMS = [
   },
 ];
 
-type SlidersDefaultParams = {
-  filmaffinity_default_rating?: number;
-  imdb_default_rating?: number;
-  filmaffinity_default_num_vots?: number;
-  imdb_default_num_vots?: number;
+type SlidersParams = {
+  filmaffinity_minimum_rating?: number;
+  imdb_minimum_rating?: number;
+  filmaffinity_minimum_num_votes?: number;
+  imdb_minimum_num_votes?: number;
 };
 
 const SLIDER_DEFAULT_PARAMS = {
-  filmaffinity_default_rating: 5,
-  imdb_default_rating: 5,
-  filmaffinity_default_num_vots: 1000,
-  imdb_default_num_vots: 1000,
+  filmaffinity_minimum_rating: 5,
+  imdb_minimum_rating: 6,
+  filmaffinity_minimum_num_votes: 1000,
+  imdb_minimum_num_votes: 3000,
 };
 
 export const RATING_PLATFORMS_SLIDERS = ({
   widget_id,
-  default_params,
+  params,
 }: {
   widget_id: string;
-  default_params: SlidersDefaultParams;
+  params: SlidersParams;
 }) => {
-  const _default_params = { ...SLIDER_DEFAULT_PARAMS, ...default_params };
+  const _params = { ...SLIDER_DEFAULT_PARAMS, ...params };
+
+  console.log("_params", _params)
   return {
     FILMAFFINITY: [
       {
@@ -54,15 +56,16 @@ export const RATING_PLATFORMS_SLIDERS = ({
         min: 0,
         max: 10,
         step: 0.1,
-        defaultValue: _default_params.filmaffinity_default_rating,
+        defaultValue: _params.filmaffinity_minimum_rating,
         saveValue: (value: number) => {
           set_widget_filter({
             widget_id,
             filter_type: "rating",
             filter_data: {
               platform: FILMAFFINITY,
-              minimum_rating: value,
+              filmaffinity_minimum_rating: value,
             },
+            update: true
           });
         },
         valueLabelFormat: (value: number) => {
@@ -112,7 +115,7 @@ export const RATING_PLATFORMS_SLIDERS = ({
         min: 0,
         max: 10000,
         step: null,
-        defaultValue: _default_params.filmaffinity_default_num_vots,
+        defaultValue: _params.filmaffinity_minimum_num_votes,
         valueLabelFormat: (value: number) => {
           return value;
         },
@@ -122,8 +125,9 @@ export const RATING_PLATFORMS_SLIDERS = ({
             filter_type: "num_votes",
             filter_data: {
               platform: FILMAFFINITY,
-              minimum_rating: value,
+              filmaffinity_minimum_num_votes: value,
             },
+            update: true
           });
         },
         marks: [
@@ -194,7 +198,7 @@ export const RATING_PLATFORMS_SLIDERS = ({
         min: 0,
         max: 10,
         step: 0.1,
-        defaultValue: _default_params.imdb_default_rating,
+        defaultValue: _params.imdb_minimum_rating,
         valueLabelFormat: (value: number) => {
           return value;
         },
@@ -204,8 +208,9 @@ export const RATING_PLATFORMS_SLIDERS = ({
             filter_type: "rating",
             filter_data: {
               platform: IMDB,
-              minimum_rating: value,
+              imdb_minimum_rating: value,
             },
+            update: true
           });
         },
         marks: [
@@ -252,9 +257,20 @@ export const RATING_PLATFORMS_SLIDERS = ({
         min: 0,
         max: 10000,
         step: null,
-        defaultValue: _default_params.imdb_default_num_vots,
+        defaultValue: _params.imdb_minimum_num_votes,
         valueLabelFormat: (value: number) => {
           return value;
+        },
+        saveValue: (value: number) => {
+          set_widget_filter({
+            widget_id,
+            filter_type: "rating",
+            filter_data: {
+              platform: IMDB,
+              imdb_minimum_num_votes: value,
+            },
+            update: true
+          });
         },
         marks: [
           {

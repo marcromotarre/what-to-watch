@@ -25,12 +25,14 @@ const WidgetRatingPlatformSection = ({ widget_id }: ComponentProps) => {
   };
 
   const widget = get_widget_by_id({ widgets, widget_id });
-  const widget_rating = get_widget_filter({ widget_id, filter_type: "rating" })
-    ?.data.minimum_rating;
 
+  const rating_filter = get_widget_filter({ widget_id, filter_type: "rating" })
+    ?.data;
+  const num_votes_filter = get_widget_filter({ widget_id, filter_type: "num_votes" })
+    ?.data;
   const rantingPlatformsSliders: any = RATING_PLATFORMS_SLIDERS({
     widget_id,
-    default_params: { default_rating: widget_rating },
+    params: { ...rating_filter, ...num_votes_filter },
   });
   return (
     <ConfigSection
