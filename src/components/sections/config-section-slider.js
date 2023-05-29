@@ -13,7 +13,7 @@ const ConfigSectionSlider = ({ slider }) => {
         valueLabelFormat: slider.valueLabelFormat,
         marks: slider.marks,
         valueLabelDisplay: "on",
-        saveValue: slider.saveValue,
+        onChange: slider.savevalue,
       })}
     </ConfigSection>
   );

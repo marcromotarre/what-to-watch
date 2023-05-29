@@ -1,7 +1,16 @@
 import { Slider } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-export const ImdbSliderComponent = (slider) => <ImdbSlider {...slider} />
+export const ImdbSliderComponent = (slider) => {
+  return (
+    <ImdbSlider
+      onChangeCommitted={(e, value) => {
+        slider.onChange(value);
+      }}
+      {...slider}
+    />
+  );
+};
 
 const ImdbSlider = styled(Slider)({
   color: "#F6C700",

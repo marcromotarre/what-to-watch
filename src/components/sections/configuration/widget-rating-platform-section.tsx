@@ -7,7 +7,7 @@ import ConfigSection from "../config-section";
 import {
   get_widget_by_id,
   get_widget_filter,
-  set_widget_ranting_platform,
+  set_widget_rating_platform,
 } from "@/utils/widget/configuration";
 import { useRecoilState } from "recoil";
 import { userWidgetsState } from "@/states/user-state";
@@ -17,7 +17,7 @@ const WidgetRatingPlatformSection = ({ widget_id }: ComponentProps) => {
   const [widgets, setWidgets] = useRecoilState(userWidgetsState);
 
   const handleRankingPlatformClick = (rating_platform: string) => {
-    const modified_widgets = set_widget_ranting_platform({
+    const modified_widgets = set_widget_rating_platform({
       widget_id,
       rating_platform,
     });

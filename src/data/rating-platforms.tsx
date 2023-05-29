@@ -57,7 +57,7 @@ export const RATING_PLATFORMS_SLIDERS = ({
         max: 10,
         step: 0.1,
         defaultValue: _params.filmaffinity_minimum_rating,
-        saveValue: (value: number) => {
+        savevalue: (value: number) => {
           set_widget_filter({
             widget_id,
             filter_type: "rating",
@@ -119,7 +119,7 @@ export const RATING_PLATFORMS_SLIDERS = ({
         valueLabelFormat: (value: number) => {
           return value;
         },
-        saveValue: (value: number) => {
+        savevalue: (value: number) => {
           set_widget_filter({
             widget_id,
             filter_type: "num_votes",
@@ -202,7 +202,7 @@ export const RATING_PLATFORMS_SLIDERS = ({
         valueLabelFormat: (value: number) => {
           return value;
         },
-        saveValue: (value: number) => {
+        savevalue: (value: number) => {
           set_widget_filter({
             widget_id,
             filter_type: "rating",
@@ -261,7 +261,7 @@ export const RATING_PLATFORMS_SLIDERS = ({
         valueLabelFormat: (value: number) => {
           return value;
         },
-        saveValue: (value: number) => {
+        savevalue: (value: number) => {
           set_widget_filter({
             widget_id,
             filter_type: "rating",

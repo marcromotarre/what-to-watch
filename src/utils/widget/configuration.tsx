@@ -54,7 +54,38 @@ export const set_widget_name = ({
   return widgets;
 };
 
-export const set_widget_ranting_platform = ({
+export const set_widget_poster_type = ({
+  widget_id,
+  widget_poster_type,
+}: {
+  widget_id: string;
+  widget_poster_type: string;
+}): Widgets => {
+  const widgets = get_widgets();
+  const widget_index = get_widget_index({ widget_id });
+  widgets[widget_index].data.movie_poster.poster_type = widget_poster_type;
+  save_widgets_to_local_storage(widgets);
+  return widgets;
+};
+
+
+
+export const set_widget_chip = ({
+  widget_id,
+  widget_chip_name,
+}: {
+  widget_id: string;
+  widget_chip_name: string;
+}): Widgets => {
+  const widgets = get_widgets();
+  const widget_index = get_widget_index({ widget_id });
+  widgets[widget_index].data.movie_poster.chip_name = widget_chip_name;
+  save_widgets_to_local_storage(widgets);
+  return widgets;
+};
+
+
+export const set_widget_rating_platform = ({
   widget_id,
   rating_platform,
 }: {
@@ -64,8 +95,23 @@ export const set_widget_ranting_platform = ({
   const widgets = get_widgets();
   const widget_index = get_widget_index({ widget_id });
   widgets[widget_index].data.rating_platform = rating_platform;
-  // set filters num_votes and rating
   save_widgets_to_local_storage(widgets);
+  set_widget_filter({
+    widget_id,
+    filter_type: "rating",
+    filter_data: {
+      platform: rating_platform,
+    },
+    update: true
+  });
+  set_widget_filter({
+    widget_id,
+    filter_type: "num_votes",
+    filter_data: {
+      platform: rating_platform,
+    },
+    update: true
+  });
   return widgets;
 };
 

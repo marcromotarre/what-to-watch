@@ -1,13 +1,11 @@
 import { Slider } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { jwtState, userRankingPlatformsState } from "../../states/user-state";
 
 export const FilmaffinitySliderComponent = (slider) => {
   return (
     <FilmaffinitySlider
       onChangeCommitted={(e, value) => {
-        slider.saveValue(value);
+        slider.onChange(value);
       }}
       {...slider}
     />

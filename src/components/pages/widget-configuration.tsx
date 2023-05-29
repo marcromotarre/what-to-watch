@@ -5,10 +5,11 @@ import { useRecoilValue } from "recoil";
 import { userWidgetsState } from "@/states/user-state";
 import WidgetNameSection from "../sections/configuration/widget-name-section";
 import WidgetFiltersSection from "../sections/configuration/widget-filters-section";
-import WidgetChipSection from "../sections/configuration/widget-chip-section";
 import WidgetOrderSection from "../sections/configuration/widget-order-section";
 import { get_widget_index } from "@/utils/widget/configuration";
 import WidgetRatingPlatformSection from "../sections/configuration/widget-rating-platform-section";
+import WidgetPosterSection from "../sections/configuration/widget-poster-section";
+import WidgetChipSection from "../sections/configuration/widget-chip-section";
 
 export default function WidgetConfigurationComponent() {
   const router = useRouter();
@@ -21,16 +22,16 @@ export default function WidgetConfigurationComponent() {
           display: "grid",
           gridTemplateColumns: "auto",
           rowGap: 3,
-          width: "calc(100% - 60px)",
           marginLeft: "30px",
         }}
       >
         {widget_id && (
           <>
             <WidgetNameSection widget_id={widget_id} />
+            <WidgetPosterSection widget_id={widget_id} />
             <WidgetRatingPlatformSection widget_id={widget_id} />
-            {/*<WidgetChipSection widget_id={widget_id} />
-            <WidgetOrderSection widget_id={widget_id} />
+            <WidgetChipSection widget_id={widget_id} />
+            {/*<WidgetOrderSection widget_id={widget_id} />
         <WidgetFiltersSection widget_id={widget_id} />*/}
           </>
         )}
