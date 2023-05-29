@@ -14,8 +14,8 @@
           "type": "rating",
           "data": {
             "platform": "FILMAFFINITY",
-            "imdb_minimum_rating": 8,
-            "filmaffinity_minimum_rating": 7
+            "imdb_minimum_rating": 4,
+            "filmaffinity_minimum_rating": 3
           }
         },
         {

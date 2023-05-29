@@ -7,6 +7,8 @@ import { userWidgetsState } from "@/states/user-state";
 import { get_widget_index, set_widget_chip } from "@/utils/widget/configuration";
 import POSTERS from "@/data/posters";
 import { MOVIE_EXAMPLE } from "@/data/movie-example";
+import get_chip_by_name from "@/utils/chip/get-chip-by-name";
+const POSTER_WIDTH = 150;
 
 const WidgetChipSection = ({ widget_id }: ComponentProps) => {
 
@@ -25,41 +27,50 @@ const WidgetChipSection = ({ widget_id }: ComponentProps) => {
 
   return (
     <ConfigSection title={"Configura tu chip"}>
-      {/*<Box
+      <Box
         sx={{
-          display: "flex",
-          width: "100%",
-          height: "calc(40vw / 0.666 + 20px)",
+          backgroundColor: "#3D3D3D",
+          display: "grid",
+          gridTemplateColumns: "100%",
+          rowGap: 4,
         }}
       >
-        <Box
-          sx={{
-            display: "flex",
-            height: "calc(40vw / 0.666 + 20px)",
-            overflowX: "scroll",
-          }}
-        >
-          {
-            get_chips_by_tag(user_rating_platform).map((chip) => (
-              <Box
-                key={chip.key}
-                sx={{ opacity: user_chip_name === chip.name ? 1 : 0.1 }}
-                onClick={() => {
-                  updateChip(chip.name)
-                }}
-              >
-                {chip.component({
-                  styles: { width: "40vw", height: "auto", marginLeft: "10px" },
-                  poster: POSTERS.find((poster) => poster.name === user_poster_type),
-                  image: MOVIE_EXAMPLE.image,
-                  name: MOVIE_EXAMPLE.name,
-                  rating: 8,
-                  votes: 1300,
-                })}
-              </Box>
-            ))}
+        <Box sx={{ backgroundColor: "#3D3D3D" }}>
+          <Box
+            sx={{
+              display: "grid",
+              gridGap: "16px",
+              padding: "16px",
+              gridTemplateColumns: `repeat(auto-fill,minmax(${POSTER_WIDTH}px,1fr))`,
+              gridAutoFlow: "column",
+              gridAutoColumns: ` minmax(${POSTER_WIDTH}px,1fr)`,
+              overflowX: "auto",
+              maxWidth: "100vw"
+            }}
+          >
+
+
+            {
+              get_chips_by_tag(user_rating_platform).map((chip, index) => {
+                const chip_data = get_chip_by_name(chip.name);
+                return (
+                  <Box onClick={() => updateChip(chip.name)}>
+                    {chip_data &&
+                      chip_data.component({
+                        styles: { width: "auto", height: "auto" },
+                        poster: POSTERS.find((poster) => poster.name === user_poster_type),
+                        image: MOVIE_EXAMPLE.image,
+                        name: MOVIE_EXAMPLE.name,
+                        rating: MOVIE_EXAMPLE.platforms.filmaffinityMovie.rating,
+                        votes: MOVIE_EXAMPLE.platforms.filmaffinityMovie.votes,
+                      })}
+                  </Box>
+                )
+              }
+              )}
+          </Box>
         </Box>
-              </Box>*/}
+      </Box>
     </ConfigSection>
   );
 };

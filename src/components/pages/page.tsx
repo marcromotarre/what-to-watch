@@ -29,14 +29,16 @@ export default function PageComponent({ children }: ComponentProps) {
           zIndex: -1,
         }}
       ></Box>
-      <Box
-        sx={{
-          width: page_config.sidePadding ? "calc(100% - 20px)" : "100%",
-          height: "fit-content",
-          position: "relative",
-        }}
-      >
-        {children}
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Box
+          sx={{
+            width: page_config.sidePadding ? "calc(100% - 20px)" : "100%",
+            height: "fit-content",
+            position: "relative",
+          }}
+        >
+          {children}
+        </Box>
       </Box>
       <Box sx={{ height: "70px", width: "100%", position: "relative" }}></Box>
       {page_config.showBottomMenu && <BottomMenu />}

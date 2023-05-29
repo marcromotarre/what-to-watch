@@ -22,7 +22,6 @@ export default function WidgetConfigurationComponent() {
           display: "grid",
           gridTemplateColumns: "auto",
           rowGap: 3,
-          marginLeft: "30px",
         }}
       >
         {widget_id && (
