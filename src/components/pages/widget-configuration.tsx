@@ -14,7 +14,6 @@ import WidgetChipSection from "../sections/configuration/widget-chip-section";
 export default function WidgetConfigurationComponent() {
   const router = useRouter();
   const widget_id = router.query?.id ? router.query.id.toString() : "";
-  console.log(router, router.query, router.query?.id, "widget_id", widget_id);
   return (
     <Box sx={{ backgroundColor: "#3D3D3D" }}>
       <Box
@@ -30,8 +29,8 @@ export default function WidgetConfigurationComponent() {
             <WidgetPosterSection widget_id={widget_id} />
             <WidgetRatingPlatformSection widget_id={widget_id} />
             <WidgetChipSection widget_id={widget_id} />
-            {/*<WidgetOrderSection widget_id={widget_id} />
-        <WidgetFiltersSection widget_id={widget_id} />*/}
+            <WidgetOrderSection widget_id={widget_id} />
+        {/*<WidgetFiltersSection widget_id={widget_id} />*/}
           </>
         )}
       </Box>

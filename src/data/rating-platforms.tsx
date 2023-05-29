@@ -46,8 +46,6 @@ export const RATING_PLATFORMS_SLIDERS = ({
   params: SlidersParams;
 }) => {
   const _params = { ...SLIDER_DEFAULT_PARAMS, ...params };
-
-  console.log("_params", _params)
   return {
     FILMAFFINITY: [
       {

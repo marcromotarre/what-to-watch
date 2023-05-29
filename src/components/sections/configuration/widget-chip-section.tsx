@@ -11,7 +11,6 @@ import get_chip_by_name from "@/utils/chip/get-chip-by-name";
 const POSTER_WIDTH = 150;
 
 const WidgetChipSection = ({ widget_id }: ComponentProps) => {
-
   const [widgets, setWidgets] = useRecoilState(userWidgetsState);
   const widget: Widget = widgets[get_widget_index({ widgets, widget_id })];
   const user_chip_name = widget.data.movie_poster.chip_name;
@@ -35,7 +34,7 @@ const WidgetChipSection = ({ widget_id }: ComponentProps) => {
           rowGap: 4,
         }}
       >
-        <Box sx={{ backgroundColor: "#3D3D3D" }}>
+        <Box sx={{ backgroundColor: "#3D3D3D", position:"relative", height: "270px" }}>
           <Box
             sx={{
               display: "grid",
@@ -45,7 +44,8 @@ const WidgetChipSection = ({ widget_id }: ComponentProps) => {
               gridAutoFlow: "column",
               gridAutoColumns: ` minmax(${POSTER_WIDTH}px,1fr)`,
               overflowX: "auto",
-              maxWidth: "100vw"
+              maxWidth: "100vw",
+              position: "absolute"
             }}
           >
 
@@ -54,10 +54,10 @@ const WidgetChipSection = ({ widget_id }: ComponentProps) => {
               get_chips_by_tag(user_rating_platform).map((chip, index) => {
                 const chip_data = get_chip_by_name(chip.name);
                 return (
-                  <Box onClick={() => updateChip(chip.name)}>
+                  <Box key={index} onClick={() => updateChip(chip.name)}>
                     {chip_data &&
                       chip_data.component({
-                        styles: { width: "auto", height: "auto" },
+                        styles: { opacity: chip.name === user_chip_name ? "1" : "0.3", width: "auto", height: "auto" },
                         poster: POSTERS.find((poster) => poster.name === user_poster_type),
                         image: MOVIE_EXAMPLE.image,
                         name: MOVIE_EXAMPLE.name,

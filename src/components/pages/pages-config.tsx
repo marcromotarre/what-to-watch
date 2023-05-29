@@ -9,7 +9,6 @@ const pages_config: PagesConfig = {
 
 export const get_page_config = (route: string): PageConfig => {
   const pg: PageConfig = pages_config[route];
-  console.log("pg", pg, route)
   return pg ? { ...DEFAULT_PAGE_CONFIG, ...pg } : DEFAULT_PAGE_CONFIG;
 };
 
