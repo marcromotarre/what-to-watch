@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 import { userWidgetsState } from "@/states/user-state";
 import WidgetNameSection from "../sections/configuration/widget-name-section";
-import WidgetFiltersSection from "../sections/configuration/widget-filters-section";
 import WidgetOrderSection from "../sections/configuration/widget-order-section";
 import { get_widget_index } from "@/utils/widget/configuration";
 import WidgetRatingPlatformSection from "../sections/configuration/widget-rating-platform-section";
 import WidgetPosterSection from "../sections/configuration/widget-poster-section";
 import WidgetChipSection from "../sections/configuration/widget-chip-section";
+import { WidgetFiltersSectionComponent } from "../sections/configuration/widget-filters-section";
 
 export default function WidgetConfigurationComponent() {
   const router = useRouter();
@@ -30,7 +30,7 @@ export default function WidgetConfigurationComponent() {
             <WidgetRatingPlatformSection widget_id={widget_id} />
             <WidgetChipSection widget_id={widget_id} />
             <WidgetOrderSection widget_id={widget_id} />
-        {/*<WidgetFiltersSection widget_id={widget_id} />*/}
+            <WidgetFiltersSectionComponent widget_id={widget_id} />
           </>
         )}
       </Box>

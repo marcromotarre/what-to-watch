@@ -124,9 +124,6 @@ export const set_widget_order = ({
   const widgets = get_widgets();
   const widget_index = get_widget_index({ widget_id });
   widgets[widget_index].data.order = order;
-  console.log(widgets)
-  console.log(widgets[widget_index])
-  
   save_widgets_to_local_storage(widgets);
   return widgets;
 };

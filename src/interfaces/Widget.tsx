@@ -22,13 +22,20 @@ export type WidgetMoviePoster = {
 
 export type WidgetFilter = {
   type: string;
-  data: WidgetFilterRatingData | WidgetFilterNumVotesData;
+  data: WidgetFilterRatingData | WidgetFilterNumVotesData | WidgetFilterYearData;
 };
 
 export type WidgetFilterRatingData = {
   filmaffinity_minimum_rating?: number;
   imdb_minimum_rating?: number;
 };
+
+
+export type WidgetFilterYearData = {
+  year_init: number;
+  year_end: number;
+};
+
 
 export type WidgetFilterNumVotesData = {
   filmaffinity_minimum_num_votes?: number;

@@ -1,8 +1,11 @@
 import genres from "@/scrap/own/results/own-genres.json";
 import { Widget, WidgetFilter, Widgets } from "@/interfaces/Widget";
 import { set_widget_filter } from "@/utils/widget/configuration";
+import { Option } from "@/components/common/option";
+import WidgetFilterGenres from "@/components/sections/configuration/filters.tsx/widget-filter-gernes";
+import WidgetFilterYear from "@/components/sections/configuration/filters.tsx/widget-filter-year";
 type GENRES_TYPE = {
-    [key: string]: string
+  [key: string]: string
 }
 export const FILTERS_BY_GENRE = genres;
 
@@ -36,11 +39,26 @@ const apply_filter_genre = ({
   set_widgets(modified_widgets);
 };
 
+const getExtraData = (widgetFilters: any) => {
+  const filter = widgetFilters
+    .find(
+      ({ type }: any) =>
+        type === "year")
+
+  if (!filter) return {
+    from: 1900,
+    to: 0
+  }
+  console.log(filter)
+  return filter.data
+}
+
 export const get_filters = (widgetFilters: Array<WidgetFilter>) => {
   const _genres: GENRES_TYPE = genres
   return [
-    {
+   /* {
       name: "Filtrar por genero",
+      rendered_component: (data: any) => <WidgetFilterGenres {...data} />,
       options: Object.keys(genres).map((genre_key: string) => {
         const genre = _genres[genre_key];
         return {
@@ -52,6 +70,7 @@ export const get_filters = (widgetFilters: Array<WidgetFilter>) => {
                 type === "genres" && data.genres.includes(parseInt(genre_key))
             )
             .some((a) => a),
+
           click: ({
             widget_id,
             widgets,
@@ -69,29 +88,11 @@ export const get_filters = (widgetFilters: Array<WidgetFilter>) => {
           },
         };
       }),
-    },
+    },*/
     {
       name: "Filtrar por Año",
-      options: [
-        "Peliculas de la decada de los 50",
-        "Peliculas de la decada de los 60",
-        "Peliculas de la decada de los 70",
-        "Peliculas de la decada de los 80",
-        "Peliculas de la decada de los 90",
-        "Peliculas de los 2000",
-        "Peliculas de esta decada",
-        "Peliculas del año pasado",
-        "Peliculas de este año",
-      ].map((value) => ({})),
-      click: ({ widget_id, widgets, set_widgets, options, option }: any) => {
-        apply_filter_genre({
-          widget_id,
-          widgets,
-          set_widgets,
-          options,
-          option,
-        });
-      },
+      rendered_component: ()=> <WidgetFilterYear widget_id={"9e79ae94-46f3-45c0-9b9b-879aff2b618a"} />,
+      option: [],
     },
   ];
 };
