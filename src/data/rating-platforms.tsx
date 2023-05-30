@@ -43,7 +43,7 @@ export const RATING_PLATFORMS_SLIDERS = ({
   params,
 }: {
   widget_id: string;
-  params: SlidersParams;
+  params: any;
 }) => {
   const _params = { ...SLIDER_DEFAULT_PARAMS, ...params };
   return {
@@ -112,7 +112,6 @@ export const RATING_PLATFORMS_SLIDERS = ({
         step: 100,
         min: 0,
         max: 10000,
-        step: null,
         defaultValue: _params.filmaffinity_minimum_num_votes,
         valueLabelFormat: (value: number) => {
           return value;
@@ -254,7 +253,6 @@ export const RATING_PLATFORMS_SLIDERS = ({
         step: 100,
         min: 0,
         max: 10000,
-        step: null,
         defaultValue: _params.imdb_minimum_num_votes,
         valueLabelFormat: (value: number) => {
           return value;

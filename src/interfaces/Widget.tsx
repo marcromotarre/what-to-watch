@@ -20,10 +20,25 @@ export type WidgetMoviePoster = {
   poster_type: string;
 };
 
-export type WidgetFilter = {
+export type WidgetFilter = (WidgetFilterYear | WidgetFilterRating | WidgetFilterNumVotes);
+
+export type WidgetFilterRating = {
   type: string;
-  data: WidgetFilterRatingData | WidgetFilterNumVotesData | WidgetFilterYearData;
+  data: WidgetFilterRatingData;
 };
+
+
+export type WidgetFilterNumVotes = {
+  type: string;
+  data: WidgetFilterNumVotesData;
+};
+
+export type WidgetFilterYear = {
+  type: string;
+  data: WidgetFilterYearData;
+};
+
+export type WidgetFilterData = (WidgetFilterYearData | WidgetFilterRatingData | WidgetFilterNumVotesData);
 
 export type WidgetFilterRatingData = {
   filmaffinity_minimum_rating?: number;
@@ -32,8 +47,8 @@ export type WidgetFilterRatingData = {
 
 
 export type WidgetFilterYearData = {
-  year_init: number;
-  year_end: number;
+  year_init?: number;
+  year_end?: number;
 };
 
 

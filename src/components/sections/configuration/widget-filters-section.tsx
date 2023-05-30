@@ -19,15 +19,12 @@ export const WidgetFiltersSectionComponent = ({ widget_id }: any) => {
   return (
     <ConfigSection title={"Hora de configurar los filtros"}>
       <Box sx={{ display: "grid", gridTemplateColumns: "auto", rowGap: 2 }}>
-        {filters.map(({ name, options, rendered_component }) => (
+        {filters.map(({ name, rendered_component }) => (
           <WidgetFilterSection
             key={name}
             name={name}
             rendered_component={rendered_component}
-            options={options}
             widget_id={widget_id}
-            widgets={userWidgets}
-            set_widgets={setUserWidgets}
           />
         ))}
       </Box>

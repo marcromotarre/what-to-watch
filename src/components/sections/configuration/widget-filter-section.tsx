@@ -12,12 +12,8 @@ import { Option } from "@/components/common/option";
 
 const WidgetFilterSection = ({
   name,
-  options,
   widget_id,
-  widgets,
-  set_widgets,
   rendered_component,
-  extra_data
 }: any) => {
   const [expanded, setExpanded] = useState(false);
   const number_filters_selected = 0
@@ -80,7 +76,7 @@ const WidgetFilterSection = ({
         >
           <Box sx={{ display: "grid", rowGap: 1, paddingLeft: 1 }}>
             
-                {rendered_component({ options, widget_id, widgets, set_widgets, extra_data })}
+                {rendered_component({ widget_id})}
            
           </Box>
         </Box>

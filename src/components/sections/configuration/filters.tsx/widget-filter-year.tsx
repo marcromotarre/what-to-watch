@@ -1,3 +1,4 @@
+import { WidgetFilter, WidgetFilterYearData } from "@/interfaces/Widget";
 import { userWidgetsState } from "@/states/user-state";
 import { get_widget_filter, set_widget_filter } from "@/utils/widget/configuration";
 import { Box, MenuItem, Select, Typography } from "@mui/material";
@@ -5,7 +6,7 @@ import { useRecoilState } from "recoil";
 
 const WidgetFilterYear = ({ widget_id }: any) => {
     const [widgets, setWidgets] = useRecoilState(userWidgetsState);
-    const filter = get_widget_filter({ widget_id, filter_type: "year" })
+    const filter: any = get_widget_filter({ widget_id, filter_type: "year" })
 
     const year_init = filter?.data?.year_init ? filter.data.year_init : 1900
     const year_end = filter?.data?.year_end ? filter.data.year_end : 0

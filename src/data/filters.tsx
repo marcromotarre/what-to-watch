@@ -9,7 +9,7 @@ type GENRES_TYPE = {
 }
 export const FILTERS_BY_GENRE = genres;
 
-const apply_filter_genre = ({
+/*const apply_filter_genre = ({
   widget_id,
   widgets,
   set_widgets,
@@ -25,10 +25,8 @@ const apply_filter_genre = ({
   const clicked_option = options.find(({ id }: any) => option.id === id);
   clicked_option.selected = !clicked_option.selected;
   const modified_widgets = set_widget_filter({
-    widgets,
     widget_id,
     filter_type: "genres",
-    order: [],
     filter_data: {
       genres: options
         .filter(({ selected }: any) => selected)
@@ -51,7 +49,7 @@ const getExtraData = (widgetFilters: any) => {
   }
   console.log(filter)
   return filter.data
-}
+}*/
 
 export const get_filters = (widgetFilters: Array<WidgetFilter>) => {
   const _genres: GENRES_TYPE = genres
