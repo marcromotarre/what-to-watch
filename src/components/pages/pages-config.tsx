@@ -2,9 +2,16 @@ const pages_config: PagesConfig = {
   "/": {
     sidePadding: false,
   },
-  "/widget/[id]":{
-  } 
+  "/widget/[id]": {
+    back: "widget",
 
+  },
+  "/platforms": {
+    back: "configuracion",
+  },
+  "/widget": {
+    back: "configuracion",
+  },
 };
 
 export const get_page_config = (route: string): PageConfig => {
@@ -20,6 +27,7 @@ type PageConfig = {
   sidePadding?: boolean;
   showBottomMenu?: boolean;
   paddingTop?: boolean;
+  back?: string;
 };
 
 const DEFAULT_PAGE_CONFIG: PageConfig = {

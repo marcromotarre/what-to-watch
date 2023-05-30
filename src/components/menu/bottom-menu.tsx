@@ -11,8 +11,8 @@ export default function BottomMenu() {
   };
   
   const go_to_configuration = () => {
-    if (router.route !== "/widget") {
-      router.push(`/widget`);
+    if (router.route !== "/configuracion") {
+      router.push(`/configuracion`);
     }
   };
 

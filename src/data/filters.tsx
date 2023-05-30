@@ -51,7 +51,7 @@ const getExtraData = (widgetFilters: any) => {
   return filter.data
 }*/
 
-export const get_filters = (widgetFilters: Array<WidgetFilter>) => {
+export const get_filters = (widget: Widget) => {
   const _genres: GENRES_TYPE = genres
   return [
    /* {
@@ -89,7 +89,7 @@ export const get_filters = (widgetFilters: Array<WidgetFilter>) => {
     },*/
     {
       name: "Filtrar por Año",
-      rendered_component: ()=> <WidgetFilterYear widget_id={"9e79ae94-46f3-45c0-9b9b-879aff2b618a"} />,
+      rendered_component: ()=> <WidgetFilterYear widget_id={widget.id} />,
       option: [],
     },
   ];

@@ -14,7 +14,7 @@ export const WidgetFiltersSectionComponent = ({ widget_id }: any) => {
   const [userWidgets, setUserWidgets] = useRecoilState(userWidgetsState);
   const widget = get_widget_by_id({widget_id})
   const [filters, setFilters] = useState(
-    get_filters(widget.data.filters)
+    get_filters(widget)
   );
   return (
     <ConfigSection title={"Hora de configurar los filtros"}>

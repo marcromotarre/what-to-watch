@@ -18,6 +18,17 @@ export const get_widgets = (widgets?: Widgets): Widgets => {
   }
 };
 
+export const add_widget = ({
+  widgets,
+  widget,
+}: {
+  widgets?: Widgets;
+  widget: Widget;
+}) => {
+  const _widgets = get_widgets(widgets);
+  save_widgets_to_local_storage([..._widgets, widget]);
+};
+
 export const get_widget_index = ({
   widgets,
   widget_id,
@@ -67,8 +78,6 @@ export const set_widget_poster_type = ({
   return widgets;
 };
 
-
-
 export const set_widget_chip = ({
   widget_id,
   widget_chip_name,
@@ -82,7 +91,6 @@ export const set_widget_chip = ({
   save_widgets_to_local_storage(widgets);
   return widgets;
 };
-
 
 export const set_widget_rating_platform = ({
   widget_id,
@@ -101,7 +109,7 @@ export const set_widget_rating_platform = ({
     filter_data: {
       platform: rating_platform,
     },
-    update: true
+    update: true,
   });
   set_widget_filter({
     widget_id,
@@ -109,7 +117,7 @@ export const set_widget_rating_platform = ({
     filter_data: {
       platform: rating_platform,
     },
-    update: true
+    update: true,
   });
   return widgets;
 };
@@ -137,6 +145,7 @@ export const get_widget_filter = ({
 }): WidgetFilter | undefined => {
   const widgets = get_widgets();
   const widget_index = get_widget_index({ widget_id });
+  console.log(widget_id, widgets, widget_index, widgets[widget_index]);
   const filter = widgets[widget_index].data.filters.find(
     ({ type }) => type === filter_type
   );
@@ -147,12 +156,12 @@ export const set_widget_filter = ({
   widget_id,
   filter_type,
   filter_data,
-  update = false
+  update = false,
 }: {
   widget_id: string;
   filter_type: string;
   filter_data: any;
-  update?: boolean
+  update?: boolean;
 }) => {
   const widgets = get_widgets();
   const widget_index = get_widget_index({ widget_id });
@@ -166,7 +175,7 @@ export const set_widget_filter = ({
     });
   } else {
     if (update) {
-      filter.data = { ...filter.data, ...filter_data }
+      filter.data = { ...filter.data, ...filter_data };
     } else {
       filter.data = filter_data;
     }

@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
+import ConfigurationPageComponent from "@/components/pages/configuration";
 
 export default function Configuration() {
-    return <Box></Box>
+    return <ConfigurationPageComponent />;
 }

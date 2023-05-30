@@ -1,14 +1,17 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { userWidgetsState } from "@/states/user-state";
-import { set_widgets_order } from "@/utils/widget/configuration";
+import { add_widget, set_widgets_order } from "@/utils/widget/configuration";
 import DraggableWidgetCard from "@/components/draggable/dragable-widget-card";
 import ConfigSection from "@/components/sections/config-section";
 import { DragableList } from "@/components/draggable/DragableList";
+import { Widget } from "@/interfaces/Widget";
+import { v4 as uuidv4 } from "uuid";
+import { DEFAULT_ORDER } from "@/data/order";
 
 export default function WidgetsSection() {
-  const userWidgets = useRecoilValue(userWidgetsState);
+  const [userWidgets, setUserWidgets] = useRecoilState(userWidgetsState);
   const [widgets, setWidgets] = useState([]);
 
   useEffect(() => {
@@ -20,6 +23,25 @@ export default function WidgetsSection() {
       }))
     );
   }, [userWidgets]);
+
+  const create_new_widget = () => {
+    const widget: Widget = {
+      id: uuidv4(),
+      type: "carousel",
+      data: {
+        filters: [],
+        order: DEFAULT_ORDER,
+        rating_platform: "FILMAFFINITY",
+        movie_poster: {
+          chip_name: "NO_CHIP",
+          poster_type: "RECTANGULAR_WITH_WHITE_BORDER",
+        },
+        name: "Widget creado",
+      },
+    };
+    add_widget({widget})
+    setUserWidgets([...userWidgets, widget]);
+  };
 
   const saveWidgetsOrder = (widgets_order: any) => {
     const current_order = userWidgets.map(({ id }: any) => id);
@@ -53,24 +75,20 @@ export default function WidgetsSection() {
             </DragableList>
           }
         </Box>
-        {/*<Box
-        sx={{
-          backgroundColor: "#646464",
-          borderRadius: "5px",
-          width: "fit-content",
-          padding: 1,
-          justifySelf: "center",
-        }}
-        onClick={() => create_new_widget()}
-      >
-        <Typography
-          sx={{ color: "#3D3D3D" }}
-          variant="body2"
-          className={inter_medium.className}
+        <Box
+          sx={{
+            backgroundColor: "#646464",
+            borderRadius: "5px",
+            width: "fit-content",
+            padding: 1,
+            justifySelf: "center",
+          }}
+          onClick={() => create_new_widget()}
         >
-          Crea un nuevo widget
-        </Typography>
-    </Box>*/}
+          <Typography sx={{ color: "#3D3D3D" }} variant="body2">
+            Crea un nuevo widget
+          </Typography>
+        </Box>
       </Box>
     </ConfigSection>
   );

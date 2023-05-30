@@ -3,7 +3,7 @@ import WIDGETS from "../data/widgets.json";
 
 const PLATFORMS = [
     { id: "netflix", name: "Netflix", has: true },
-    { id: "netflix-basic-with-ads", name: "Netflix Basic with ADS", has: false },
+    { id: "netflix-basic-with-ads", name: "Netflix Basic with ADS", has: true },
     { id: "disney", name: "Disney", has: true },
     { id: "filmin", name: "Filmin", has: true },
     { id: "filmin-plus", name: "Filmin +", has: true },

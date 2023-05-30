@@ -6,3 +6,5 @@ export const ORDER: ORDER_TYPE = [
 ];
 
 type ORDER_TYPE = Array<any>;
+
+export const DEFAULT_ORDER = ["year", "popularity", "num_votes", "rating"];
