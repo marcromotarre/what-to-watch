@@ -7,7 +7,7 @@ import { inter_medium, inter_regular } from "@/fonts/inter";
 import { userWidgetsState } from "@/states/user-state";
 import { useRecoilState } from "recoil";
 import { ORDER } from "@/data/order";
-import { get_widget_by_id, set_widget_order } from "@/utils/widget/configuration";
+import { get_widget_by_id, get_widgets, set_widget_order } from "@/utils/widget/configuration";
 
 const OrderElementComponent = ({
   text = "",
@@ -44,8 +44,9 @@ const OrderElementComponent = ({
 const WidgetOrderSection = ({ widget_id }: ComponentProps) => {
   // get actual order
   const [userWidgets, setUserWidgets] = useRecoilState(userWidgetsState);
-  const order = userWidgets[widget_id]?.data?.order
-    ? userWidgets[widget_id].data.order.map((order_value: any) => {
+  const widget = get_widget_by_id({widget_id})
+  const order = widget?.data?.order
+    ? widget.data.order.map((order_value: any) => {
       return ORDER.find((order: any) => order.identity === order_value).name;
     })
     : ORDER.map(({ name }) => name);
@@ -62,6 +63,7 @@ const WidgetOrderSection = ({ widget_id }: ComponentProps) => {
         widget_id,
         order: transformed_order,
       });
+      setUserWidgets(get_widgets())
     }
   };
 
