@@ -3,14 +3,14 @@ const pages_config: PagesConfig = {
     sidePadding: false,
   },
   "/widget/[id]": {
-    back: "widget",
+    back: "/widget",
 
   },
   "/platforms": {
-    back: "configuracion",
+    back: "/configuracion",
   },
   "/widget": {
-    back: "configuracion",
+    back: "/configuracion",
   },
 };
 
