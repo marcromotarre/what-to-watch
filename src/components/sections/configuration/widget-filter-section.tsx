@@ -61,25 +61,23 @@ const WidgetFilterSection = ({
             {name}
           </Typography>
           <Box></Box>
-          <Typography variant="body2">
+          {/*<Typography variant="body2">
             {number_filters_selected === 0
               ? "No tienes filtros seleccionados"
               : `Tienes ${number_filters_selected} Filtros seleccionados`}
-          </Typography>
+          </Typography>*/}
         </Box>{" "}
       </AccordionSummary>
       <AccordionDetails>
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: "30px auto",
             columnGap: "8px",
             rowGap: 1,
             alignItems: "center",
           }}
           title={"Hora de configurar los filtros"}
         >
-          <Box></Box>
           <Box sx={{ display: "grid", rowGap: 1, paddingLeft: 1 }}>
             
                 {rendered_component({ options, widget_id, widgets, set_widgets, extra_data })}

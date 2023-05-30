@@ -67,7 +67,7 @@ const WidgetFilterYear = ({ widget_id }: any) => {
     return (
         <Box sx={{ display: "grid", gridTemplateColumns: "auto auto", columnGap: 1 }}>
             <Box>
-                <Typography>Desde:</Typography>
+                <Typography sx={{ paddingBottom: "10px" }} variant="body2">Desde:</Typography>
                 <Select
                     sx={{ width: "100%", color: "white" }}
                     value={year_init}
@@ -77,7 +77,7 @@ const WidgetFilterYear = ({ widget_id }: any) => {
                 </Select>
             </Box>
             <Box>
-                <Typography>Hasta: </Typography>
+                <Typography sx={{ paddingBottom: "10px" }} variant="body2">Hasta: </Typography>
                 <Select
                     sx={{ width: "100%", color: "white" }}
                     value={year_end}
