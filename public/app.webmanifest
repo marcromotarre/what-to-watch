@@ -1,11 +1,11 @@
 {
-    "theme_color": "#f69435",
-    "background_color": "#f69435",
-    "display": "browser",
-    "scope": "/",
+    "name": "What To Watch",
+    "short_name": "WtoW",
     "start_url": "/",
-    "name": "What2Watch",
-    "short_name": "w2w",
+    "orientation": "portrait",
+    "theme_color": "#3D3D3D",
+    "scope": "/",
+    "display": "standalone",
     "description": "This is an app to",
     "icons": [
         {
