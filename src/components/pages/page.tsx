@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import { Box } from "@mui/material";
 import BottomMenu from "../menu/bottom-menu";
 import { useRouter } from "next/router";
@@ -7,6 +7,14 @@ import ArrowBackIosRoundedIcon from "@mui/icons-material/ArrowBackIosRounded";
 export default function PageComponent({ children }: ComponentProps) {
   const router = useRouter();
   const page_config = get_page_config(router.route);
+
+  useEffect(() => {
+    if(!window.matchMedia("standalone").matches) {
+      router.push("/install");
+
+    }
+  }, []);
+
   return (
     <Box
       sx={{
