@@ -1,7 +1,16 @@
+import { useAddToHomescreenPrompt } from "@/hooks/useAddToHomeScreenPrompt";
 import { Box, Button, Typography } from "@mui/material";
+import { useState } from "react";
 
 export default function InstallPageComponent() {
-  const onClickInstall = () => {
+    const [prompt, promptToInstall] = useAddToHomescreenPrompt();
+    const [isVisible, setVisibleState] = useState(false);
+    const hide = () => setVisibleState(false);
+
+
+
+    const onClickInstall = () => {
+    promptToInstall()
     console.log("install wpa");
   };
   return (
