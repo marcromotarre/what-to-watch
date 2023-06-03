@@ -42,3 +42,6 @@ https://plazagonzalo.medium.com/how-to-convert-your-next-js-application-to-andro
 
 
 https://frontendmasters.com/courses/pwas/
+
+
+maskable.app

@@ -159,6 +159,50 @@ main {
   display: none;
 }
 
+h1 {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+h2 {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+h3 {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+h4 {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+h5 {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+h6 {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+p {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+span {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+a {
+  user-select: none;
+  -webkit-user-select: none;
+}
 @-moz-document url-prefix() {
   .ff-banner {
     display: block;

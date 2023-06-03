@@ -1,10 +1,10 @@
 const pages_config: PagesConfig = {
   "/": {
     sidePadding: false,
+    paddingTop: false,
   },
   "/widget/[id]": {
     back: "/widget",
-
   },
   "/platforms": {
     back: "/configuracion",

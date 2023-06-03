@@ -31,6 +31,7 @@ export default function BottomMenu() {
         display: "flex",
         justifyContent: "space-around",
         zIndex: 1000,
+        marginBottom: 4,
       }}
     >
       <HomeRoundedIcon
